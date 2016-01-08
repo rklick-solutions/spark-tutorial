@@ -1,0 +1,8 @@
+JSON is a popular semistructured data format. The simplest way to load JSON data is
+by loading the data as a text file and then mapping over the values with a JSON
+parser. Likewise, we can use our preferred JSON serialization library to write out the
+values to strings, which we can then write out.
+ In Java and Scala we can also work
+with JSON data using a custom Hadoop format.
+ “JSON” on page 172 also shows how to
+load JSON data with Spark SQL.
