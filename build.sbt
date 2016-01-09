@@ -4,8 +4,14 @@ version := "1.0"
 
 scalaVersion := "2.11.7"
 
+lazy val spark = "1.6.0"
+
 // Spark related dependencies
-libraryDependencies += "org.apache.spark" %% "spark-core" % "1.5.2"
+libraryDependencies ++= Seq(
+  "org.apache.spark" %% "spark-core" % spark,
+  "org.apache.spark" %% "spark-sql" % spark,
+  "org.apache.spark" %% "spark-streaming" % spark
+)
 
 // Change this to another test framework if you prefer
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"

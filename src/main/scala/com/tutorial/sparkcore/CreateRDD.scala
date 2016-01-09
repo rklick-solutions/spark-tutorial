@@ -11,7 +11,7 @@ object CreateRDD {
   /**
     * Create a Scala Spark Context.
     */
-  val sc = SparkCommon.sc
+  val sc = SparkCommon.sparkContext
   def main(args: Array[String]) {
 
     /**

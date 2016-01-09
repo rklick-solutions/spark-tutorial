@@ -8,7 +8,7 @@ import com.tutorial.utils.SparkCommon
   */
 object RDDAction {
 
-  val sc = SparkCommon.sc
+  val sc = SparkCommon.sparkContext
 
   def main(args: Array[String])
   {

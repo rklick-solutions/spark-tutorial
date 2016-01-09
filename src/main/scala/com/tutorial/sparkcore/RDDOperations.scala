@@ -10,7 +10,7 @@ import com.tutorial.utils.SparkCommon
   */
 object RDDOperations {
 
-  val sc = SparkCommon.sc
+  val sc = SparkCommon.sparkContext
 
   def main(args: Array[String]) {
 
