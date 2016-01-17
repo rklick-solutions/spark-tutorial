@@ -142,9 +142,9 @@ object RDDTransformation {
     val resultRightOuterJoin = inputTupple1.rightOuterJoin(inputTupple2)
     val resultLeftOuterJoin = inputTupple1.leftOuterJoin(inputTupple2)
 
-    println("inner join between two RDDs." + result.collect().mkString(","))
-    println(" RightOuter  join between two RDDs." + result1.collect().mkString(","))
-    println(" leftOuter join between two RDDs." + result2.collect().mkString(","))
+    println("inner join between two RDDs." + resultJoin.collect().mkString(","))
+    println(" RightOuter  join between two RDDs." + resultRightOuterJoin.collect().mkString(","))
+    println(" leftOuter join between two RDDs." + resultLeftOuterJoin.collect().mkString(","))
 
     /**
       * Transformations on two pair RDDs (rdd = {(1, 2), (3, 4), (4, 6)} other = {(4, 9)})
