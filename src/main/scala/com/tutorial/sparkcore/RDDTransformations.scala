@@ -6,7 +6,7 @@ import com.tutorial.utils.SparkCommon
   * Created by ved on 8/1/16.
   * Transformations are operations on RDDs that return a new RDD
   */
-object RDDTransformation {
+object RDDTransformations {
 
   val sc = SparkCommon.sparkContext
 
