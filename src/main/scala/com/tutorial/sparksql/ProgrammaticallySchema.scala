@@ -1,8 +1,8 @@
 package com.tutorial.sparksql
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.types.{StructType, StructField, StringType};
 
 import com.tutorial.utils.SparkCommon
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.types.{StringType, StructField, StructType}
 
 /**
   * Created by ved on 19/1/16.
@@ -15,6 +15,7 @@ object ProgrammaticallySchema {
 
   //sc is an existing SparkContext.
   val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+
   def main(args: Array[String]) {
 
     // Create an RDD
@@ -39,7 +40,7 @@ object ProgrammaticallySchema {
     employeeDataFrame.registerTempTable("employee")
 
     /**
-      *SQL statements can be run by using the sql methods provided by sqlContext.      *
+      * SQL statements can be run by using the sql methods provided by sqlContext.      *
       */
     val results = sqlContext.sql("SELECT name FROM employee")
 
@@ -52,12 +53,6 @@ object ProgrammaticallySchema {
 
 
   }
-
-
-
-
-
-
 
 
 }

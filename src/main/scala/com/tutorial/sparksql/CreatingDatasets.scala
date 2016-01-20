@@ -12,15 +12,14 @@ object CreatingDatasets {
   def main(args: Array[String]) {
 
 
-
     val sc = SparkCommon.sparkContext
+
     val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+
     import sqlContext.implicits._
+
     val ds1 = Seq(1, 2, 3).toDS()
     println(ds1.map(_ + 1).collect().mkString(","))
-
-
-
 
 
   }

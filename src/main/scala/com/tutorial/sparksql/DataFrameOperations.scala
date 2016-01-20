@@ -22,15 +22,15 @@ object DataFrameOperations {
     /**
       * Create the DataFrame
       */
-    val employee ="src/main/resources/employee.json"
+    val employee = "src/main/resources/employee.json"
 
     /**
       * read the JSON document
-      *Use the following command to read the JSON document named employee.json.
-      *The data is shown as a table with the fields − id, name, age and employeeCode.
+      * Use the following command to read the JSON document named employee.json.
+      * The data is shown as a table with the fields − id, name, age and employeeCode.
       *
       */
-    val empdataset:DataFrame = ssc.read.format("json").options(schemaOptions).load(employee)
+    val empdataset: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee)
 
     /**
       * Show the Data
@@ -61,13 +61,6 @@ object DataFrameOperations {
       * counting the number of employees who are of the same age.
       */
     empdataset.groupBy("age").count().show()
-
-
-
-
-
-
-
 
 
   }
