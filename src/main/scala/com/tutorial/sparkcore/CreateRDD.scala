@@ -25,7 +25,7 @@ object CreateRDD {
       */
     val rddDataset = sc.textFile("src/main/resources/test_file.txt")
     rddDataset.collect().map(println)
-    sc.stop()
+    //sc.stop()
   }
 
 }

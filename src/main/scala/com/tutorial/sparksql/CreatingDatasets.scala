@@ -7,14 +7,12 @@ import com.tutorial.utils.SparkCommon
   */
 object CreatingDatasets {
 
+
+  val sc = SparkCommon.sparkContext
   val ssc = SparkCommon.sparkSQLContext
+  val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 
   def main(args: Array[String]) {
-
-
-    val sc = SparkCommon.sparkContext
-
-    val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 
     import sqlContext.implicits._
 

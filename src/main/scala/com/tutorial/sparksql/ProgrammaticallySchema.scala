@@ -40,7 +40,7 @@ object ProgrammaticallySchema {
     employeeDataFrame.registerTempTable("employee")
 
     /**
-      * SQL statements can be run by using the sql methods provided by sqlContext.      *
+      * SQL statements can be run by using the sql methods provided by sqlContext.
       */
     val results = sqlContext.sql("SELECT name FROM employee")
 
