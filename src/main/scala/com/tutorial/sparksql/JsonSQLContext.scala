@@ -13,7 +13,6 @@ object JsonSQLContext {
 
   def main(args: Array[String]) {
 
-
     val pocOnePath = "src/main/resources/poc_1.json"
     val dataset: DataFrame = ssc.read.format("json").options(schemaOptions).load(pocOnePath)
 

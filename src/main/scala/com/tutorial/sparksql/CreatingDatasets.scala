@@ -7,7 +7,6 @@ import com.tutorial.utils.SparkCommon
   */
 object CreatingDatasets {
 
-
   val sc = SparkCommon.sparkContext
   val ssc = SparkCommon.sparkSQLContext
   val sqlContext = new org.apache.spark.sql.SQLContext(sc)
