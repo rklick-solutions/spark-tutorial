@@ -1,14 +1,1 @@
-[{"transactionId":111,"customerId":1,"itemId": 1,"amountPaid": 100.0},
-{"transactionId":112,"customerId":2,"itemId": 2,"amountPaid": 505.0},
-{"transactionId":113,"customerId":3,"itemId": 3,"amountPaid": 510.0},
-{"transactionId":114,"customerId":4,"itemId": 4,"amountPaid": 600.0},
-{"transactionId":115,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":116,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":117,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":118,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":119,"customerId":2,"itemId": 3,"amountPaid": 500.0},
-{"transactionId":120,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":121,"customerId":1,"itemId": 4,"amountPaid": 500.0},
-{"transactionId":122,"customerId":1,"itemId": 2,"amountPaid": 500.0},
-{"transactionId":123,"customerId":1,"itemId": 4,"amountPaid": 500.0},
-{"transactionId":124,"customerId":1,"itemId": 2,"amountPaid": 500.0}]
+[{"transactionId":111,"customerId":1,"itemId": 1,"amountPaid": 100.0},{"transactionId":112,"customerId":2,"itemId": 2,"amountPaid": 505.0},{"transactionId":113,"customerId":3,"itemId": 3,"amountPaid": 510.0},{"transactionId":114,"customerId":4,"itemId": 4,"amountPaid": 600.0},{"transactionId":115,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":116,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":117,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":118,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":119,"customerId":2,"itemId": 3,"amountPaid": 500.0},{"transactionId":120,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":121,"customerId":1,"itemId": 4,"amountPaid": 500.0},{"transactionId":122,"customerId":1,"itemId": 2,"amountPaid": 500.0},{"transactionId":123,"customerId":1,"itemId": 4,"amountPaid": 500.0},{"transactionId":124,"customerId":1,"itemId": 2,"amountPaid": 500.0}]

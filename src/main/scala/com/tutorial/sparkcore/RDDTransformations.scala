@@ -12,7 +12,6 @@ object RDDTransformations {
 
   def main(args: Array[String]) {
 
-
     val inputText = sc.textFile("src/main/resources/test_file.txt")
     val inputLine = sc.parallelize(List("hello VED", "hi"))
     val input = sc.parallelize(List(1, 2, 3, 4, 5, 6, 7, 8))

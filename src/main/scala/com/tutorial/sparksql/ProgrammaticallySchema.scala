@@ -24,7 +24,6 @@ object ProgrammaticallySchema {
     // The schema is encoded in a string
     val schemaString = "name age"
 
-
     // Generate the schema based on the string of schema
     val schema =
       StructType(

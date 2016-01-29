@@ -10,11 +10,14 @@ lazy val spark = "1.6.0"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % spark,
   "org.apache.spark" %% "spark-sql" % spark,
-  "org.apache.spark" %% "spark-streaming" % spark
+  "org.apache.spark" %% "spark-streaming" % spark,
+  "com.databricks" %% "spark-csv" % "1.3.0"
+
 )
 
 // Change this to another test framework if you prefer
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+
 
 // Uncomment to use Akka
 //libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
