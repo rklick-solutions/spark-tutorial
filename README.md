@@ -7,9 +7,20 @@
  |___/ | .__/   \__,_| |_|    |_|\_\           \__|  \__,_|  \__|  \___/  |_|    |_|  \__,_| |_|
        | |                                                                                      
        |_|                                                                                      
-
-spark-tutorial: This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
 ```
+
+This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
+
+#### Initializing Spark
+
+```scala
+val conf = new SparkConf().setAppName(appName).setMaster(master)
+new SparkContext(conf)
+```
+
+Check [SparkCommon](src/main/scala/com/tutorial/utils/SparkCommon.scala)
+
+`Note:` Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.
 
 
 
