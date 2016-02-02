@@ -8,6 +8,8 @@
        | |                                                                                      
        |_|                                                                                      
 
-spark-tutorial: This tutorial provides a quick introduction to using Spark
+spark-tutorial: This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
 ```
+
+
 
