@@ -19,25 +19,41 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="welcome-to-the-spark-tutorial-wiki" class="anchor" href="#welcome-to-the-spark-tutorial-wiki" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to the spark-tutorial wiki!</h3>
+      <pre><code>                               _               _             _                    _           _ 
+                              | |             | |           | |                  (_)         | |
+  ___   _ __     __ _   _ __  | | __  ______  | |_   _   _  | |_    ___    _ __   _    __ _  | |
+ / __| | '_ \   / _` | | '__| | |/ / |______| | __| | | | | | __|  / _ \  | '__| | |  / _` | | |
+ \__ \ | |_) | | (_| | | |    |   &lt;           | |_  | |_| | | |_  | (_) | | |    | | | (_| | | |
+ |___/ | .__/   \__,_| |_|    |_|\_\           \__|  \__,_|  \__|  \___/  |_|    |_|  \__,_| |_|
+       | |                                                                                      
+       |_|                                                                                      
+</code></pre>
 
-<p>We are using SparkCommon  from Utils package to run the Examples of  in this tutorial.</p>
+<p>This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API</p>
 
-<div class="highlight highlight-source-scala"><pre><span class="pl-k">object</span> <span class="pl-en">SparkCommon</span> {
+<h4>
+<a id="initializing-spark" class="anchor" href="#initializing-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initializing Spark</h4>
 
-  <span class="pl-k">lazy</span> <span class="pl-k">val</span> <span class="pl-en">conf</span> <span class="pl-k">=</span> {
-    <span class="pl-k">new</span> <span class="pl-en">SparkConf</span>(<span class="pl-c1">false</span>)
-      .setMaster(<span class="pl-s"><span class="pl-pds">"</span>local[*]<span class="pl-pds">"</span></span>)
-      .setAppName(<span class="pl-s"><span class="pl-pds">"</span>Spark Tutorial<span class="pl-pds">"</span></span>)
-  }
-  <span class="pl-k">lazy</span> <span class="pl-k">val</span> <span class="pl-en">sparkContext</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SparkContext</span>(conf)
-  <span class="pl-k">lazy</span> <span class="pl-k">val</span> <span class="pl-en">sparkSQLContext</span> <span class="pl-k">=</span> <span class="pl-en">SQLContext</span>.getOrCreate(sparkContext)
-  <span class="pl-k">lazy</span> <span class="pl-k">val</span> <span class="pl-en">streamingContext</span> <span class="pl-k">=</span> <span class="pl-en">StreamingContext</span>.getActive()
-    .getOrElse(<span class="pl-k">new</span> <span class="pl-en">StreamingContext</span>(sparkContext, <span class="pl-en">Seconds</span>(<span class="pl-c1">2</span>)))
-}</pre></div>
+<div class="highlight highlight-source-scala"><pre><span class="pl-k">val</span> <span class="pl-en">conf</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SparkConf</span>().setAppName(appName).setMaster(master)
+<span class="pl-k">new</span> <span class="pl-en">SparkContext</span>(conf)</pre></div>
 
-<p><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core">Spark Core</a></p>
+<p>Check <a href="src/main/scala/com/tutorial/utils/SparkCommon.scala">SparkCommon</a></p>
+
+<p><code>Note:</code> Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.</p>
+
+<p>We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX programming contexts.</p>
+
+<h4>
+<a id="rdd-functionality" class="anchor" href="#rdd-functionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RDD Functionality</h4>
+
+<ul>
+<li>Creations</li>
+<li>Transformations</li>
+<li>Actions</li>
+<li>Operations</li>
+</ul>
+
+<p>For more information <a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core">check</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/rklick-solutions/spark-tutorial">spark-tutorial</a> is maintained by <a href="https://github.com/rklick-solutions">rklick-solutions</a>.</span>
