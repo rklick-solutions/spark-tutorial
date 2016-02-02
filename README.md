@@ -22,5 +22,17 @@ Check [SparkCommon](src/main/scala/com/tutorial/utils/SparkCommon.scala)
 
 `Note:` Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.
 
+We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX programming contexts.
+
+#### RDD Functionality
+* Creations
+* Transformations
+* Actions
+* Operations
+
+For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core)
+
+
+
 
 
