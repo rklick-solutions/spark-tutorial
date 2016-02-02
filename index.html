@@ -19,17 +19,7 @@
     </section>
 
     <section class="main-content">
-      <pre><code>                               _               _             _                    _           _ 
-                              | |             | |           | |                  (_)         | |
-  ___   _ __     __ _   _ __  | | __  ______  | |_   _   _  | |_    ___    _ __   _    __ _  | |
- / __| | '_ \   / _` | | '__| | |/ / |______| | __| | | | | | __|  / _ \  | '__| | |  / _` | | |
- \__ \ | |_) | | (_| | | |    |   &lt;           | |_  | |_| | | |_  | (_) | | |    | | | (_| | | |
- |___/ | .__/   \__,_| |_|    |_|\_\           \__|  \__,_|  \__|  \___/  |_|    |_|  \__,_| |_|
-       | |                                                                                      
-       |_|                                                                                      
-</code></pre>
-
-<p>This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API</p>
+      <p>This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API</p>
 
 <h4>
 <a id="initializing-spark" class="anchor" href="#initializing-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initializing Spark</h4>
@@ -37,7 +27,7 @@
 <div class="highlight highlight-source-scala"><pre><span class="pl-k">val</span> <span class="pl-en">conf</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SparkConf</span>().setAppName(appName).setMaster(master)
 <span class="pl-k">new</span> <span class="pl-en">SparkContext</span>(conf)</pre></div>
 
-<p>Check <a href="src/main/scala/com/tutorial/utils/SparkCommon.scala">SparkCommon</a></p>
+<p>Check <a href="https://github.com/rklick-solutions/spark-tutorial/blob/master/src/main/scala/com/tutorial/utils/SparkCommon.scala">SparkCommon</a></p>
 
 <p><code>Note:</code> Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.</p>
 
