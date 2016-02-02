@@ -18,7 +18,7 @@ val conf = new SparkConf().setAppName(appName).setMaster(master)
 new SparkContext(conf)
 ```
 
-Check [SparkCommon](src/main/scala/com/tutorial/utils/SparkCommon.scala)
+Check [SparkCommon](https://github.com/rklick-solutions/spark-tutorial/blob/master/src/main/scala/com/tutorial/utils/SparkCommon.scala)
 
 `Note:` Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.
 
