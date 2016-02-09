@@ -6,7 +6,9 @@ scalaVersion := "2.11.7"
 
 lazy val spark = "1.6.0"
 
+
 // Spark related dependencies
+
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % spark,
   "org.apache.spark" %% "spark-sql" % spark,

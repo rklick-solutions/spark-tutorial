@@ -2,7 +2,7 @@ package com.tutorial.sparkcore
 
 import com.tutorial.utils.SparkCommon
 
-  /**
+/**
     * An example to create RDD from different data sources
     * Created by ved on 7/1/16.
     */
