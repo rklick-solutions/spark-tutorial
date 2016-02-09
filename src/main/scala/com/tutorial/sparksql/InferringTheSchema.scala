@@ -19,7 +19,7 @@ object InferringTheSchema {
     // Create RDD and Apply Transformations
     val empl = sc.textFile("src/main/resources/employee.txt")
       .map(_.split(","))
-      .map(emp => Employee(emp(0).trim.toInt, emp(1), emp(2).trim.toInt))
+      .map(emp => Employee1(emp(0).trim.toInt, emp(1), emp(2).trim.toInt))
       .toDF()
 
     /**
@@ -40,4 +40,4 @@ object InferringTheSchema {
   }
 }
 
-case class Employee(id: Int, name: String, age: Int)
+case class Employee1(id: Int, name: String, age: Int)
