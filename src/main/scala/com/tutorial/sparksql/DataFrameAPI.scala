@@ -165,7 +165,6 @@ object DataFrameAPI {
     resultCache.cache().show()
 
 
-
     /**
       * Data Frame operations:
       */
@@ -191,7 +190,6 @@ object DataFrameAPI {
 
 
     empDataFrame.na.drop().show()
-
 
 
     /**
@@ -308,11 +306,13 @@ object DataFrameAPI {
       * Returns a new DataFrame by adding a column or replacing the existing column that has the same name.
       */
 
-    val coder: (Int => String) = (arg: Int) => {if (arg < 28) "little" else "big"}
+    val coder: (Int => String) = (arg: Int) => {
+      if (arg < 28) "little" else "big"
+    }
 
     val sqlfunc = udf(coder)
 
-    empDataFrame.withColumn("First",sqlfunc(col("age"))).show()
+    empDataFrame.withColumn("First", sqlfunc(col("age"))).show()
 
 
     /**
