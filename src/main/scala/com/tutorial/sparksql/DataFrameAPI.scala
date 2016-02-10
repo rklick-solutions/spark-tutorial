@@ -3,6 +3,8 @@ package com.tutorial.sparksql
 import com.tutorial.utils.SparkCommon
 import org.apache.spark.sql.DataFrame
 
+import scala.reflect.internal.util.TableDef.Column
+
 /**
   * Created by ved on 9/2/16.
   * DataFarme API Example Using Different types of Functionality.
@@ -33,9 +35,13 @@ object DataFrameAPI {
 
     val employee = "src/main/resources/employee.json"
 
+    val employee1 = "src/main/resources/employee1.json"
+
     val employees = "src/main/resources/employees.json"
 
     val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee)
+
+    val empDataFrame2: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee1)
 
     val empDataFrame1: DataFrame = ssc.read.format("json").options(schemaOptions).load(employees)
 
@@ -159,21 +165,6 @@ object DataFrameAPI {
     resultCache.cache().show()
 
 
-    /**
-      * persist()
-      * persist() explicitly to store the data into memory.
-      * Or data stored in a distributed way in the memory by default.
-      */
-
-   // val resultCache1 = empDataFrame.filter(empDataFrame("age") > 23)
-
-    //resultCache1.persist().show()
-
-    /**
-      * unpersist()
-      * unpersist() remove all blocks for it from memory and disk.
-      */
-    //resultCache1.unpersist().show()
 
     /**
       * Data Frame operations:
@@ -201,45 +192,14 @@ object DataFrameAPI {
 
     empDataFrame.na.drop().show()
 
-    /**
-      * stat()
-      * Returns a DataFrameStatFunctions for working statistic functions support.
-      */
-    //empDataFrame.stat.freqItems(Seq("a")).show()
 
-
-    /**
-      * join()
-      * Cartesian join with another DataFrame.
-      */
-
-    // val resultJoin = empDataFrame.join(empDataFrame, empDataFrame1("userId") === empDataFrame("userId"))
-    //resultJoin.show()
-
-    //join(department, people("deptId") === department("id"))
 
     /**
       * sort()
       * Returns a new DataFrame sorted by the given expressions.
       */
-    empDataFrame.sort($"userId", $"name".desc).show()
+    empDataFrame.sort($"userId".desc).show()
 
-
-    /**
-      * apply()
-      * Selects column based on the column name and return it as a Column.
-      * Note that the column name can also reference to a nested column like a.b.
-      */
-
-    //empDataFrame.apply("name")
-
-    /**
-      * col()
-      * Selects column based on the column name and return it as a Column
-      */
-
-    // val resultCol = empDataFrame.col("age" +10)
-    // println(resultCol)
 
     /**
       * as()
@@ -259,7 +219,7 @@ object DataFrameAPI {
 
     /**
       * select()
-      * to fetch age-column among three columns from the DataFrame.
+      * to fetch age-column among all columns from the DataFrame.
       */
 
     empDataFrame.select("age").show()
@@ -267,9 +227,10 @@ object DataFrameAPI {
 
     /**
       * filter()
-      * filter the employees whose age is less than 28 (age < 28).
+      * filter the employees whose age is greater than 28 (age > 28).
       */
-    empDataFrame.filter(empDataFrame("age") > 23).show()
+
+    empDataFrame.filter(empDataFrame("age") > 28).show()
 
 
     /**
@@ -301,6 +262,7 @@ object DataFrameAPI {
     /**
       * agg()
       * Aggregates on the entire DataFrame without groups.
+      * returns the average of the values in a group.
       */
 
     empDataFrame.agg(max($"age")).show()
@@ -320,7 +282,8 @@ object DataFrameAPI {
       * unionAll()
       * Returns a new DataFrame containing union of rows in this frame and another frame.
       */
-    //empDataFrame.unionAll(empDataFrame1).show()
+
+    empDataFrame.unionAll(empDataFrame2).show()
 
 
     /**
@@ -328,43 +291,28 @@ object DataFrameAPI {
       * Returns a new DataFrame containing rows only in both this frame and another frame.
       */
 
-    //empDataFrame1.intersect(empDataFrame).show()
+    empDataFrame2.intersect(empDataFrame).show()
 
 
     /**
       * except()
       * Returns a new DataFrame containing rows in this frame but not in another frame.
       */
-    //empDataFrame.except(empDataFrame1).show()
+    empDataFrame.except(empDataFrame2).show()
 
 
-    /**
-      * sample()
-      * Returns a new DataFrame by sampling a fraction of rows.
-      */
-
-
-    /**
-      * randomSplit()
-      * Randomly splits this DataFrame with the provided weights.
-      */
-
-
-    /**
-      * explode()
-      * Returns a new DataFrame where each row has been expanded to zero or more rows by the provided function.
-      */
-
-    //empDataFrame1.explode("words", "word"){words: String => words.split(" ")}.show()
 
 
     /**
       * withColumn()
       * Returns a new DataFrame by adding a column or replacing the existing column that has the same name.
       */
-    //empDataFrame.withColumn("$salary","$salry").show()
 
-    //empDataFrame.withColumn("young", > 25)
+    val coder: (Int => String) = (arg: Int) => {if (arg < 28) "little" else "big"}
+
+    val sqlfunc = udf(coder)
+
+    empDataFrame.withColumn("First",sqlfunc(col("age"))).show()
 
 
     /**
@@ -373,7 +321,7 @@ object DataFrameAPI {
       *
       */
 
-    empDataFrame1.withColumnRenamed("employeeCode", "employeeId").show()
+    empDataFrame2.withColumnRenamed("id", "employeeId").show()
 
 
     /**
@@ -389,12 +337,13 @@ object DataFrameAPI {
       * Returns a new DataFrame that contains only the unique rows from this DataFrame.
       * This is an alias for distinct.
       */
+
     empDataFrame.dropDuplicates().show()
 
 
     /**
       * describe()
-      * escribe returns a DataFrame containing information such as number of non-null entries (count),
+      * describe returns a DataFrame containing information such as number of non-null entries (count),
       * mean, standard deviation, and minimum and maximum value for each numerical column.
       */
     empDataFrame.describe("age").show()
