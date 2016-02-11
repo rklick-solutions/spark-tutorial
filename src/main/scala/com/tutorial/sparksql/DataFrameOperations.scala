@@ -1,6 +1,5 @@
 package com.tutorial.sparksql
 
-
 import com.tutorial.utils.SparkCommon
 import org.apache.spark.sql.DataFrame
 
@@ -24,14 +23,14 @@ object DataFrameOperations {
     /**
       * Create the DataFrame
       */
-    val employee = "src/main/resources/employee.json"
+    val cars = "src/main/resources/cars.json"
 
     /**
       * read the JSON document
-      * Use the following command to read the JSON document named employee.json.
-      * The data is shown as a table with the fields − id, name, age and employeeCode.
+      * Use the following command to read the JSON document named cars.json.
+      * The data is shown as a table with the fields − id, name, speed and weight.
       */
-    val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee)
+    val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
 
     /**
       * Show the Data
@@ -53,15 +52,15 @@ object DataFrameOperations {
 
     /**
       * Filter used to
-      * employees whose age is greater than 23 (age > 23).
+      * cars whose speed is greater than 300 (speed > 300).
       */
-    empDataFrame.filter(empDataFrame("age") > 23).show()
+    empDataFrame.filter(empDataFrame("speed") > 300).show()
 
     /**
       * groupBy Method
-      * counting the number of employees who are of the same age.
+      * counting the number of cars who are of the same speed.
       */
-    empDataFrame.groupBy("age").count().show()
+    empDataFrame.groupBy("speed").count().show()
 
 
   }

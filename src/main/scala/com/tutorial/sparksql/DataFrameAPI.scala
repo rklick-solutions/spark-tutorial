@@ -33,17 +33,17 @@ object DataFrameAPI {
 
   def main(args: Array[String]) {
 
-    val employee = "src/main/resources/employee.json"
+    val cars = "src/main/resources/cars.json"
 
     val employee1 = "src/main/resources/employee1.json"
 
-    val employees = "src/main/resources/employees.json"
+    val carsPrice = "src/main/resources/carsPrice.json"
 
-    val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee)
+    val carDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
 
     val empDataFrame2: DataFrame = ssc.read.format("json").options(schemaOptions).load(employee1)
 
-    val empDataFrame1: DataFrame = ssc.read.format("json").options(schemaOptions).load(employees)
+    val carDataFrame1: DataFrame = ssc.read.format("json").options(schemaOptions).load(carsPrice)
 
     /**
       * Some Action Operation with examples:
@@ -51,7 +51,7 @@ object DataFrameAPI {
       * If you want to see top 20 rows of DataFrame in a tabular form then use the following command.
       */
 
-    empDataFrame.show()
+    carDataFrame.show()
 
 
     /**
@@ -59,14 +59,14 @@ object DataFrameAPI {
       * If you want to see n rows of DataFrame in a tabular form then use the following command.
       */
 
-    empDataFrame.show(2)
+    carDataFrame.show(2)
 
 
     /**
       * take()
       * take(n) Returns the first n rows in the DataFrame.
       */
-    empDataFrame.take(2).foreach(println)
+    carDataFrame.take(2).foreach(println)
 
 
     /**
@@ -74,7 +74,7 @@ object DataFrameAPI {
       * Returns the number of rows.
       */
 
-    empDataFrame.groupBy("age").count().show()
+    carDataFrame.groupBy("speed").count().show()
 
 
     /**
@@ -82,7 +82,7 @@ object DataFrameAPI {
       * head () is used to returns first row.
       */
 
-    val resultHead = empDataFrame.head()
+    val resultHead = carDataFrame.head()
 
     println(resultHead.mkString(","))
 
@@ -91,7 +91,7 @@ object DataFrameAPI {
       * head(n) returns first n rows.
       */
 
-    val resultHeadNo = empDataFrame.head(3)
+    val resultHeadNo = carDataFrame.head(3)
 
     println(resultHeadNo.mkString(","))
 
@@ -100,7 +100,7 @@ object DataFrameAPI {
       * Returns the first row.
       */
 
-    val resultFirst = empDataFrame.first()
+    val resultFirst = carDataFrame.first()
 
     println("fist:" + resultFirst.mkString(","))
 
@@ -110,7 +110,7 @@ object DataFrameAPI {
       * Returns an array that contains all of Rows in this DataFrame.
       */
 
-    val resultCollect = empDataFrame.collect()
+    val resultCollect = carDataFrame.collect()
 
     println(resultCollect.mkString(","))
 
@@ -124,7 +124,7 @@ object DataFrameAPI {
       * If you want to see the Structure (Schema) of the DataFrame, then use the following command.
       */
 
-    empDataFrame.printSchema()
+    carDataFrame.printSchema()
 
 
     /**
@@ -133,9 +133,9 @@ object DataFrameAPI {
       * It can be quite convenient in conversion from a RDD of tuples into a DataFrame with meaningful names.
       */
 
-    val empl = sc.textFile("src/main/resources/employee.txt")
+    val car = sc.textFile("src/main/resources/fruits.txt")
       .map(_.split(","))
-      .map(emp => Employee(emp(0).trim.toInt, emp(1), emp(2).trim.toInt))
+      .map(f => Fruit(f(0).trim.toInt, f(1), f(2).trim.toInt))
       .toDF().show()
 
 
@@ -144,7 +144,7 @@ object DataFrameAPI {
       * Returns all column names and their data types as an array.
       */
 
-    empDataFrame.dtypes.foreach(println)
+    carDataFrame.dtypes.foreach(println)
 
 
     /**
@@ -152,7 +152,7 @@ object DataFrameAPI {
       * Returns all column names as an array.
       */
 
-    empDataFrame.columns.foreach(println)
+    carDataFrame.columns.foreach(println)
 
     /**
       * cache()
@@ -160,7 +160,7 @@ object DataFrameAPI {
       * Or data stored in a distributed way in the memory by default.
       */
 
-    val resultCache = empDataFrame.filter(empDataFrame("age") > 23)
+    val resultCache = carDataFrame.filter(carDataFrame("speed") > 300)
 
     resultCache.cache().show()
 
@@ -172,15 +172,15 @@ object DataFrameAPI {
       * orderBy()
       * Returns a new DataFrame sorted by the specified column(s).
       */
-    empDataFrame.orderBy(desc("age")).show()
+    carDataFrame.orderBy(desc("speed")).show()
 
 
     /**
       * groupBy()
-      * counting the number of employees who are of the same age.
+      * counting the number of carloyees who are of the same age.
       */
 
-    empDataFrame.groupBy("age").count().show()
+    carDataFrame.groupBy("speed").count().show()
 
 
     /**
@@ -189,14 +189,14 @@ object DataFrameAPI {
       */
 
 
-    empDataFrame.na.drop().show()
+    carDataFrame.na.drop().show()
 
 
     /**
       * sort()
       * Returns a new DataFrame sorted by the given expressions.
       */
-    empDataFrame.sort($"userId".desc).show()
+    carDataFrame.sort($"weight".desc).show()
 
 
     /**
@@ -204,7 +204,7 @@ object DataFrameAPI {
       * Returns a new DataFrame with an alias set.
       */
 
-    empDataFrame.select(avg($"age").as("average_age")).show()
+    carDataFrame.select(avg($"speed").as("avg_speed")).show()
 
 
     /**
@@ -212,7 +212,7 @@ object DataFrameAPI {
       * Returns a new DataFrame with an alias set. Same as `as`.
       */
 
-    empDataFrame.select(avg($"age").alias("average_age")).show()
+    carDataFrame.select(avg($"weight").alias("avg_weight")).show()
 
 
     /**
@@ -220,41 +220,23 @@ object DataFrameAPI {
       * to fetch age-column among all columns from the DataFrame.
       */
 
-    empDataFrame.select("age").show()
+    carDataFrame.select("speed").show()
 
 
     /**
       * filter()
-      * filter the employees whose age is greater than 28 (age > 28).
+      * filter the carloyees whose age is greater than 28 (age > 28).
       */
 
-    empDataFrame.filter(empDataFrame("age") > 28).show()
+    carDataFrame.filter(carDataFrame("speed") > 300).show()
 
 
     /**
       * where()
       * Filters age using the given SQL expression.
       */
-    empDataFrame.where($"age" > 25).show()
+    carDataFrame.where($"speed" > 300).show()
 
-
-    /**
-      * rollup()
-      * Create a multi-dimensional rollup for
-      * the current DataFrame using the specified columns.
-      */
-
-    empDataFrame1.rollup($"firstName", $"jobTitleName").avg()
-
-    /**
-      * cube()
-      * Create a multi-dimensional cube for the current DataFrame using the specified columns,
-      * so we can run aggregation on them.
-      */
-
-    empDataFrame1.cube($"employeeCode", $"jobTitleName").agg(Map(
-      "salary" -> "avg",
-      "age" -> "max")).show()
 
 
     /**
@@ -263,7 +245,7 @@ object DataFrameAPI {
       * returns the average of the values in a group.
       */
 
-    empDataFrame.agg(max($"age")).show()
+    carDataFrame.agg(max($"speed")).show()
 
 
     /**
@@ -273,7 +255,7 @@ object DataFrameAPI {
       * while limit returns a new DataFrame.
       */
 
-    empDataFrame1.limit(3).show()
+    carDataFrame1.limit(3).show()
 
 
     /**
@@ -281,7 +263,7 @@ object DataFrameAPI {
       * Returns a new DataFrame containing union of rows in this frame and another frame.
       */
 
-    empDataFrame.unionAll(empDataFrame2).show()
+    carDataFrame.unionAll(empDataFrame2).show()
 
 
     /**
@@ -289,17 +271,14 @@ object DataFrameAPI {
       * Returns a new DataFrame containing rows only in both this frame and another frame.
       */
 
-    empDataFrame2.intersect(empDataFrame).show()
-
+    carDataFrame1.intersect(carDataFrame).show()
 
     /**
       * except()
       * Returns a new DataFrame containing rows in this frame but not in another frame.
       */
-    empDataFrame.except(empDataFrame2).show()
 
-
-
+    carDataFrame.except(carDataFrame1).show()
 
     /**
       * withColumn()
@@ -307,12 +286,12 @@ object DataFrameAPI {
       */
 
     val coder: (Int => String) = (arg: Int) => {
-      if (arg < 28) "little" else "big"
+      if (arg < 300) "slow" else "high"
     }
 
     val sqlfunc = udf(coder)
 
-    empDataFrame.withColumn("First", sqlfunc(col("age"))).show()
+    carDataFrame.withColumn("First", sqlfunc(col("speed"))).show()
 
 
     /**
@@ -329,7 +308,7 @@ object DataFrameAPI {
       * Returns a new DataFrame with a column dropped.
       */
 
-    empDataFrame.drop("name").show()
+    carDataFrame.drop("speed").show()
 
 
     /**
@@ -338,7 +317,7 @@ object DataFrameAPI {
       * This is an alias for distinct.
       */
 
-    empDataFrame.dropDuplicates().show()
+    carDataFrame.dropDuplicates().show()
 
 
     /**
@@ -346,11 +325,11 @@ object DataFrameAPI {
       * describe returns a DataFrame containing information such as number of non-null entries (count),
       * mean, standard deviation, and minimum and maximum value for each numerical column.
       */
-    empDataFrame.describe("age").show()
+    carDataFrame.describe("speed").show()
 
   }
 
 
 }
 
-case class Employee(id: Int, name: String, age: Int)
+case class Fruit(id: Int, name: String, quantity: Int)
