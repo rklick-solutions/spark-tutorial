@@ -177,7 +177,7 @@ object DataFrameAPI {
 
     /**
       * groupBy()
-      * counting the number of carloyees who are of the same age.
+      * counting the number of cars who are of the same speed.
       */
 
     carDataFrame.groupBy("speed").count().show()
@@ -196,7 +196,7 @@ object DataFrameAPI {
       * sort()
       * Returns a new DataFrame sorted by the given expressions.
       */
-    carDataFrame.sort($"weight".desc).show()
+    carDataFrame.sort($"itemNo".desc).show()
 
 
     /**
@@ -217,7 +217,7 @@ object DataFrameAPI {
 
     /**
       * select()
-      * to fetch age-column among all columns from the DataFrame.
+      * to fetch speed-column among all columns from the DataFrame.
       */
 
     carDataFrame.select("speed").show()
@@ -225,7 +225,7 @@ object DataFrameAPI {
 
     /**
       * filter()
-      * filter the carloyees whose age is greater than 28 (age > 28).
+      * filter the cars whose speed is greater than 300 (speed > 300).
       */
 
     carDataFrame.filter(carDataFrame("speed") > 300).show()
@@ -233,10 +233,9 @@ object DataFrameAPI {
 
     /**
       * where()
-      * Filters age using the given SQL expression.
+      * Filters speed using the given SQL expression.
       */
     carDataFrame.where($"speed" > 300).show()
-
 
 
     /**
