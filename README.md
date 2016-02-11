@@ -26,11 +26,30 @@ We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX progr
 
 #### RDD Functionality
 * Creations
+* Operations
 * Transformations
 * Actions
-* Operations
 
 For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core)
+
+
+#### Spark SQL
+* Create SQL Context
+* Creating DataFrames
+* Creating Datasets
+* Inferring the Schema using Reflection
+* Programmatically Specifying the Schema
+* DataFrame Operations in JSON file
+* DataFrame Operations in Text file
+* DataFrame Operations in CSV file
+* DataFarme API
+* Action
+* Basic DataFrame functions
+* DataFrame Operations
+
+For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL)
+
+
 
 
 
