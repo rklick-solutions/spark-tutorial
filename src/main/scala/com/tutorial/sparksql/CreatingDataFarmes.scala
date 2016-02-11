@@ -18,7 +18,7 @@ object CreatingDataFarmes {
     /**
       * Create the DataFrame
       */
-    val df = sqlContext.read.json("src/main/resources/employee.json")
+    val df = sqlContext.read.json("src/main/resources/cars.json")
 
     /**
       * Show the Data

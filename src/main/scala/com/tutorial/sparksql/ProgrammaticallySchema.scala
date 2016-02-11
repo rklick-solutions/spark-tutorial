@@ -19,36 +19,36 @@ object ProgrammaticallySchema {
   def main(args: Array[String]) {
 
     // Create an RDD
-    val employee = sc.textFile("src/main/resources/employee.txt")
+    val fruit = sc.textFile("src/main/resources/fruits.txt")
 
     // The schema is encoded in a string
-    val schemaString = "name age"
+    val schemaString = "id name"
 
     // Generate the schema based on the string of schema
     val schema =
       StructType(
         schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, true)))
 
-    // Convert records of the RDD (employee) to Rows.
-    val rowRDD = employee.map(_.split(",")).map(p => Row(p(0), p(1).trim))
+    schema.foreach(println)
+
+    // Convert records of the RDD (fruit) to Rows.
+    val rowRDD = fruit.map(_.split(",")).map(p => Row(p(0), p(1).trim))
+
+    rowRDD.foreach(println)
 
     // Apply the schema to the RDD.
-    val employeeDataFrame = sqlContext.createDataFrame(rowRDD, schema)
+    val fruitDataFrame = sqlContext.createDataFrame(rowRDD, schema)
+
+    fruitDataFrame.foreach(println)
 
     // Register the DataFrames as a table.
-    employeeDataFrame.registerTempTable("employee")
+    fruitDataFrame.registerTempTable("fruit")
 
     /**
       * SQL statements can be run by using the sql methods provided by sqlContext.
       */
-    val results = sqlContext.sql("SELECT name FROM employee")
-
-    /**
-      * The results of SQL queries are DataFrames and support all the normal RDD operations.
-      * The columns of a row in the result can be accessed by field index or by field name.
-      *
-      */
-    results.map(t => "Name: " + t(0)).collect().foreach(println)
+    val results = sqlContext.sql("SELECT * FROM fruit")
+    results.show()
 
 
   }
