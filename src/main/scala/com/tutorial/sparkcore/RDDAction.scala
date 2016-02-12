@@ -5,8 +5,8 @@ import java.util.UUID
 import com.tutorial.utils.SparkCommon
 
 /**
+  *  Actions are operations that return a result to the driver program or write it to storage
   * Created by ved on 8/1/16.
-  * Actions are operations that return a result to the driver program or write it to storage
   */
 object RDDAction {
 

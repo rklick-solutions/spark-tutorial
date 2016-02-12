@@ -28,7 +28,7 @@ object DataFrameOperations {
     /**
       * read the JSON document
       * Use the following command to read the JSON document named cars.json.
-      * The data is shown as a table with the fields − id, name, speed and weight.
+      * The data is shown as a table with the fields − itemNo, name, speed and weight.
       */
     val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
 
@@ -51,7 +51,7 @@ object DataFrameOperations {
     empDataFrame.select("name").show()
 
     /**
-      * Filter used to
+      * Filter
       * cars whose speed is greater than 300 (speed > 300).
       */
     empDataFrame.filter(empDataFrame("speed") > 300).show()

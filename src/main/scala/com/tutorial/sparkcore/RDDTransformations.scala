@@ -3,8 +3,8 @@ package com.tutorial.sparkcore
 import com.tutorial.utils.SparkCommon
 
 /**
-  * Created by ved on 8/1/16.
   * Transformations are operations on RDDs that return a new RDD
+  * Created by ved on 8/1/16.
   */
 object RDDTransformations {
 

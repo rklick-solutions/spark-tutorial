@@ -6,15 +6,13 @@ import org.apache.spark.sql.DataFrame
 import scala.reflect.internal.util.TableDef.Column
 
 /**
-  * Created by ved on 9/2/16.
   * DataFarme API Example Using Different types of Functionality.
-  * Diiferent type of DataFrame operatios are :
+
+  * Created by ved on 9/2/16.
   */
 
 /**
-  * Action:
-  * Action are operations (such as take, count, first, and so on) that return a value after
-  * running a computation on an DataFrame.
+  *
   */
 object DataFrameAPI {
 
@@ -37,7 +35,7 @@ object DataFrameAPI {
 
     val employee1 = "src/main/resources/employee1.json"
 
-    val carsPrice = "src/main/resources/carsPrice.json"
+    val carsPrice = "src/main/resources/cars_price.json"
 
     val carDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
 
@@ -46,7 +44,13 @@ object DataFrameAPI {
     val carDataFrame1: DataFrame = ssc.read.format("json").options(schemaOptions).load(carsPrice)
 
     /**
+      * Diiferent type of DataFrame operatios.
+      * Action: Action are operations (such as take, count, first, and so on)
+      * that return a value after running a computation on an DataFrame.
       * Some Action Operation with examples:
+      */
+
+    /**
       * show()
       * If you want to see top 20 rows of DataFrame in a tabular form then use the following command.
       */

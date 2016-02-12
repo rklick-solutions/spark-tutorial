@@ -5,8 +5,8 @@ import java.util.UUID
 import com.tutorial.utils.SparkCommon
 
 /**
-  * Created by ved on 7/1/16.
   * An example  of two types of operations: transformations and actions.
+  * Created by ved on 7/1/16.
   */
 object RDDOperations {
 
