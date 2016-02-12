@@ -8,7 +8,7 @@ import org.apache.spark.sql.SQLContext
 /**
   * Created by ved on 29/1/16.
   */
-object csvFile {
+object CsvFile {
 
   val sc = SparkCommon.sparkContext
 

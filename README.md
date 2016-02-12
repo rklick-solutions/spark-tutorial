@@ -24,11 +24,11 @@ Check [SparkCommon](https://github.com/rklick-solutions/spark-tutorial/blob/mast
 
 We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX programming contexts.
 
-#### RDD Functionality
-* Creations
-* Operations
-* Transformations
-* Actions
+#### Spark Core
+* RDD Creations
+* RDD Operations
+* RDD Transformations
+* RDD Actions
 
 For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core)
 

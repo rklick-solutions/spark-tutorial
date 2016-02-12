@@ -5,9 +5,10 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
 
 /**
-  * Created by ved on 19/1/16.
   * Method for creating DataFrame is through programmatic interface
   * Programmatically Specifying the Schema
+  *
+  * Created by ved on 19/1/16.
   */
 object ProgrammaticallySchema {
   val sc = SparkCommon.sparkContext
