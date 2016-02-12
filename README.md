@@ -47,10 +47,3 @@ For more information [check](https://github.com/rklick-solutions/spark-tutorial/
 * DataFrame Operations
 
 For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL)
-
-
-
-
-
-
-
