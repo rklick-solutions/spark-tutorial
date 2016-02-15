@@ -189,7 +189,7 @@ object DataFrameAPI {
 
     /**
       * na()
-      * Returns a DataFrameNaFunctions for working with missing data.
+      * Returns a DataFrame  for working with missing data.
       */
 
 

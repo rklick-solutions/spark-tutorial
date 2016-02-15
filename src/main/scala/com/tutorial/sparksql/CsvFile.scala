@@ -29,8 +29,11 @@ object CsvFile {
     selectedData.write
       .format("com.databricks.spark.csv")
       .option("header", "true")
-      .save(s"src/main/resources/${UUID.randomUUID()}")
-    println("OK")
+      selectedData.show()
+
+
+      //.save(s"src/main/resources/${UUID.randomUUID()}")
+    //println("OK")
 
   }
 

@@ -11,39 +11,27 @@
 
 This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
 
-#### Initializing Spark
 
-```scala
-val conf = new SparkConf().setAppName(appName).setMaster(master)
-new SparkContext(conf)
-```
 
-Check [SparkCommon](https://github.com/rklick-solutions/spark-tutorial/blob/master/src/main/scala/com/tutorial/utils/SparkCommon.scala)
+####  [Introduction to Apache Spark] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#introduction-to-apache-spark)
+* [ Features of Apache Spark](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#features-of-apache-spark)
+* [Spark Core](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core)
+* [Initializing Spark](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-spark)
+* [Create RDDs] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#create-rdds)
+* [RDDs Operations](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds-operations)
+ * [Transformations] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#1transformations)
+ * [Actions] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#2actions)
 
-`Note:` Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.
-
-We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX programming contexts.
-
-#### Spark Core
-* RDD Creations
-* RDD Operations
-* RDD Transformations
-* RDD Actions
-
-For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core)
-
-#### Spark SQL
-* Create SQL Context
-* Creating DataFrames
-* Creating Datasets
-* Inferring the Schema using Reflection
-* Programmatically Specifying the Schema
-* DataFrame Operations in JSON file
-* DataFrame Operations in Text file
-* DataFrame Operations in CSV file
-* DataFarme API
-* Action
-* Basic DataFrame functions
-* DataFrame Operations
-
-For more information [check](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL)
+#### [Spark SQL](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql)
+* [Create SQL Context](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#create-sql-context)
+* [Creating DataFrames](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-dataframes)
+* [Creating Datasets](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-datasets)
+* [Inferring the Schema using Reflection](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#1-inferring-the-schema-using-reflection)
+* [Programmatically Specifying the Schema](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#2-programmatically-specifying-the-schema)
+* [DataFrame Operations in JSON file](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-json-file)
+* [DataFrame Operations in Text file](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-text-file)
+* [DataFrame Operations in CSV file](https://github.com/rklick-solutions/sparhttps://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-sparkk-tutorial/wiki/Spark-SQL#dataframe-operations-in-csv-file)
+* [DataFarme API Fuctionalty](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#datafarme-api-example-using-different-types-of-functionality)
+ * [Action](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#action)
+ * [Basic DataFrame functions](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-dataframe-functions)
+ * [DataFrame Operations](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#data-frame-operations)
