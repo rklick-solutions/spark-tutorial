@@ -20,20 +20,21 @@ object InferringTheSchema {
       * Create RDD and Apply Transformations
       */
 
-    val empl = sc.textFile("src/main/resources/fruits.txt")
+    val fruits = sc.textFile("src/main/resources/fruits.txt")
       .map(_.split(","))
-      .map(emp => Fruits(emp(0).trim.toInt, emp(1), emp(2).trim.toInt))
+      .map(frt => Fruits(frt(0).trim.toInt, frt(1), frt(2).trim.toInt))
       .toDF()
 
     /**
       * Store the DataFrame Data in a Table
       */
-    empl.registerTempTable("fruits")
+    fruits.registerTempTable("fruits")
 
     /**
       * Select Query on DataFrame
       */
     val records = sqlContext.sql("SELECT * FROM fruits")
+
 
     /**
       * To see the result data of allrecords DataFrame
