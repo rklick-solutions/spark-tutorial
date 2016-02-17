@@ -26,9 +26,9 @@ object BasicQueryExample {
 
     result.show()
 
-   // val cars = sqlContext.sql("SELECT COUNT(*) FROM Cars1").collect().foreach(println)
+    sqlContext.sql("SELECT COUNT(*) FROM Cars1").collect().foreach(println)
 
-    val result1 = sqlContext.sql("SELECT name, COUNT(*) AS cnt FROM Cars1 WHERE name <> '' GROUP BY name ORDER BY cnt DESC LIMIT 10")
+    sqlContext.sql("SELECT name, COUNT(*) AS cnt FROM Cars1 WHERE name <> '' GROUP BY name ORDER BY cnt DESC LIMIT 10")
       .collect().foreach(println)
 
 
