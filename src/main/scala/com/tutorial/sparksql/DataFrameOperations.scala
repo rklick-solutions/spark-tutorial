@@ -30,37 +30,37 @@ object DataFrameOperations {
       * Use the following command to read the JSON document named cars.json.
       * The data is shown as a table with the fields − itemNo, name, speed and weight.
       */
-    val empDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
+    val carsDataFrame: DataFrame = ssc.read.format("json").options(schemaOptions).load(cars)
 
     /**
       * Show the Data
       * If you want to see the data in the DataFrame, then use the following command.
       */
-    empDataFrame.show()
+    carsDataFrame.show()
 
     /**
       * printSchema Method
       * If you want to see the Structure (Schema) of the DataFrame, then use the following command
       */
-    empDataFrame.printSchema()
+    carsDataFrame.printSchema()
 
     /**
       * Select Method
       * Use the following command to fetch name-column among three columns from the DataFrame
       */
-    empDataFrame.select("name").show()
+    carsDataFrame.select("name").show()
 
     /**
       * Filter
       * cars whose speed is greater than 300 (speed > 300).
       */
-    empDataFrame.filter(empDataFrame("speed") > 300).show()
+    carsDataFrame.filter(carsDataFrame("speed") > 300).show()
 
     /**
       * groupBy Method
       * counting the number of cars who are of the same speed.
       */
-    empDataFrame.groupBy("speed").count().show()
+    carsDataFrame.groupBy("speed").count().show()
 
 
   }
