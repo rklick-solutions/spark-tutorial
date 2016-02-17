@@ -15,7 +15,7 @@ object BasicQueryExample {
 
   def main(args: Array[String]) {
 
-    import sqlContext.implicits._
+    //import sqlContext.implicits._
 
     val input = sqlContext.read.json("src/main/resources/cars1.json")
 
