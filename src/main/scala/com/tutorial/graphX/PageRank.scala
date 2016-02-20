@@ -23,6 +23,7 @@ object PageRank {
     }.map( e => Edge(e._1.toLong,e._2.toLong,1))
 
     val verticesFile = sc.textFile("src/main/resources/users.txt",20)
+    
 
     val vertices = verticesFile.zipWithIndex.map(_.swap)
 
