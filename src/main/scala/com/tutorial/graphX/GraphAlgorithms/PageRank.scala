@@ -39,7 +39,6 @@ object PageRank {
       */
 
     val verticesFile = sc.textFile("src/main/resources/twitter_users.txt", 20)
-
     /**
       * Provide an index to the vertices and then swap it to make it in the (index, title) format:
       */
@@ -68,7 +67,7 @@ object PageRank {
     val swappedRanks = ranks.map(_.swap)
 
 
-    swappedRanks.foreach(print)
+    swappedRanks.foreach(println)
 
 
     /**
@@ -78,7 +77,7 @@ object PageRank {
     val sortedRanks = swappedRanks.sortByKey(false)
 
 
-    sortedRanks.foreach(print)
+    sortedRanks.foreach(println )
 
     /**
       * Get the highest ranked page:
@@ -86,31 +85,29 @@ object PageRank {
 
     val highest = sortedRanks.first
 
-    highest.toString().mkString(" ").foreach(print)
-
-
-
-
+    highest.toString().mkString(" ").foreach(println )
 
     /**
       * The preceding command gives the vertex id,
       * which you still have to look up to see the actual title with rank. Let's do a join:
       */
 
-   //val join = sortedRanks.join()
+    val allJoin = ranks.join(vertices)
+
 
     /**
       * Sort the joined RDD again after converting from the
       * (vertex ID, (page rank, title))format to the (page rank, (vertex ID, title)) format:
       */
-   // val final = join.map(v => (v._2._1, (v._1, v._2._2))).
-     // sortByKey(false)
+    val finalAll = allJoin.map(v => (v._2._1, (v._1, v._2._2))).
+    sortByKey(false)
 
     /**
       * Print the top five ranked pages
       */
 
-   // final.take(5).collect.foreach(println)
+    finalAll.collect().take(5).foreach(println)
+   //allJoin.take(5).collect.foreach(println)
 
 
   }

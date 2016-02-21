@@ -1,9 +1,12 @@
-package com.tutorial.graphX
+package com.tutorial.graphX.GraphAlgorithms
 
 import com.tutorial.utils.SparkCommon
 import org.apache.spark.graphx._
 
 /**
+  * connected:
+  * an undirected graph is a subgraph in which any two vertices are connected to each other by paths,
+  * and which is connected to no additional vertices in the supergraph.
   * Created by ved on 19/2/16.
   */
 object connected {
@@ -22,7 +25,7 @@ object connected {
       * Convert the facebookEdgesFile RDD into the RDD of edges.
       */
 
-    val edges = facebookEdgesFile.map(_.split(",")).map(e => Edge(e(0).
+    val fbEdges = facebookEdgesFile.map(_.split(",")).map(e => Edge(e(0).
       toLong, e(1).toLong, e(2)))
 
     /**
@@ -35,40 +38,40 @@ object connected {
       * Map the vertices.
       */
 
-    val vertices = facebookVerticesFile.map(_.split(",")).map(e =>
+    val fbVertices = facebookVerticesFile.map(_.split(",")).map(e =>
       (e(0).toLong, e(1)))
 
     /**
       * Create the graph object.
       */
 
-    val graph = Graph(vertices, edges)
+    val graph = Graph(fbVertices, fbEdges)
 
 
     /**
       * Calculate the connected components.
       */
-    val cc = graph.connectedComponents
+    val connectedFb = graph.connectedComponents
 
     /**
       * Find the vertices for the connected components (which is a subgraph).
       */
 
-    val ccVertices = cc.vertices
+    val connectedFbVertices = connectedFb.vertices
 
-    val ccEdges = cc.edges
+    val connectedFbEdges = connectedFb.edges
 
     /**
       * Print the ccVertices.
       */
 
-    ccVertices.collect.foreach(println)
+    connectedFbVertices.collect.foreach(println)
 
     /**
       * Print the ccEdges.
       */
 
-    ccEdges.collect.foreach(println)
+    connectedFbEdges.collect.foreach(println)
 
   }
 

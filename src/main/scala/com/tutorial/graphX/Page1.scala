@@ -10,6 +10,11 @@ object Page1 {
 
   def main(args: Array[String]) {
 
+    /**
+      * Load the graph as in the PageRank example
+      *
+      */
+
     val graph = GraphLoader.edgeListFile(sc,"src/main/resources/followers.txt")
 
 
@@ -25,7 +30,7 @@ object Page1 {
       val fields = line.split(",")
       (fields(0).toLong, fields(1))
     }
-    val ccByUsername = users.leftOuterJoin(cc).map {
+    val ccByUsername = users.join(cc).map {
       case (id, (username, cc)) => (username, cc)
     }
 
