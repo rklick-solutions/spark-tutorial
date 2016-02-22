@@ -1,7 +1,11 @@
+![alt Spark Tutorial](spark-tutorial-logo.png)
 
-
-This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
-
+>
+> This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API
+>
+> This is the start of using Spark with Scala, from next week onwards we would be working on this tutorial to make it grow.
+> We would look at how we can add more functionality into it , then we would be adding more modules to it together. If you have any
+>changes then feel free to send in pull requests and we would do the merges :) Stay tuned.
 
 
 ####[Spark Core](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core)
