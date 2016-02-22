@@ -25,7 +25,7 @@ object PageRank1 {
     val ranks = graph.pageRank(0.0001).vertices
 
     /**
-      *Join the ranks with the usernames
+      * Join the ranks with the usernames
       */
 
     val users = sc.textFile("src/main/resources/users.txt").map { line =>

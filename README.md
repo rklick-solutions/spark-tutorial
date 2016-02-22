@@ -4,10 +4,8 @@ This tutorial provides a quick introduction to using Spark. It demonstrates the 
 
 
 
-
 ####[Spark Core](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core)
- * [Spark Core](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core)
- * [Introduction ] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#introduction-to-apache-spark)
+  * [Introduction ] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#introduction-to-apache-spark)
  * [Features ](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#features-of-apache-spark)
  * [Initializing ](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-spark)
  * [RDDs] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds)
@@ -17,7 +15,7 @@ This tutorial provides a quick introduction to using Spark. It demonstrates the 
     * [Actions] (https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#2actions)
 
 #### [Spark SQL](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql)
- * [Spark SQL](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql)
+ * [Introduction](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#Introduction)
   * [Create SQL Context](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#create-sql-context)
   * [Basic Query](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-query)
  *  [DataFrames](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframes)
@@ -36,8 +34,5 @@ This tutorial provides a quick introduction to using Spark. It demonstrates the 
  * [Datasets](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataset)
   * [Creating Datasets](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-datasets)
   * [Basic Opeartion](https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-opeartion)
-
-
-
 
 

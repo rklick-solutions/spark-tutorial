@@ -17,7 +17,7 @@ object TriangleCounting {
   def main(args: Array[String]) {
 
     /**
-      *Load the edges in canonical order and partition the graph for triangle count
+      * Load the edges in canonical order and partition the graph for triangle count
       */
 
     val graph = GraphLoader.edgeListFile(sc, "src/main/resources/followers.txt", true).
@@ -44,14 +44,10 @@ object TriangleCounting {
     }
 
     /**
-      *Print the result
+      * Print the result
       *
       */
     println(triCountByUsername.collect().mkString("\n"))
-
-
-
-
 
 
   }

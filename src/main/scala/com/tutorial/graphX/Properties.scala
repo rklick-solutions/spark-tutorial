@@ -42,8 +42,6 @@ object Properties {
       Edge(11L, 6L, 3)
     )
 
-
-
     val vertexRDD: RDD[(Long, (String, Int))] = sc.parallelize(vertexArray)
     val edgeRDD: RDD[Edge[Int]] = sc.parallelize(edgeArray)
 

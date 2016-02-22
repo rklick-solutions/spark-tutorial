@@ -77,7 +77,7 @@ object PageRank {
     val sortedRanks = swappedRanks.sortByKey(false)
 
 
-    sortedRanks.foreach(println )
+    sortedRanks.foreach(println)
 
     /**
       * Get the highest ranked page:
@@ -85,7 +85,7 @@ object PageRank {
 
     val highest = sortedRanks.first
 
-    highest.toString().mkString(" ").foreach(println )
+    highest.toString().mkString(" ").foreach(println)
 
     /**
       * The preceding command gives the vertex id,
@@ -100,14 +100,14 @@ object PageRank {
       * (vertex ID, (page rank, title))format to the (page rank, (vertex ID, title)) format:
       */
     val finalAll = allJoin.map(v => (v._2._1, (v._1, v._2._2))).
-    sortByKey(false)
+      sortByKey(false)
 
     /**
       * Print the top five ranked pages
       */
 
     finalAll.collect().take(5).foreach(println)
-   //allJoin.take(5).collect.foreach(println)
+    //allJoin.take(5).collect.foreach(println)
 
 
   }
