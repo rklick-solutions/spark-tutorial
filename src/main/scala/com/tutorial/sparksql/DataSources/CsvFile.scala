@@ -1,6 +1,4 @@
-package com.tutorial.sparksql
-
-import java.util.UUID
+package com.tutorial.sparksql.DataSources
 
 import com.tutorial.utils.SparkCommon
 import org.apache.spark.sql.SQLContext
@@ -29,10 +27,10 @@ object CsvFile {
     selectedData.write
       .format("com.databricks.spark.csv")
       .option("header", "true")
-      selectedData.show()
+    selectedData.show()
 
 
-      //.save(s"src/main/resources/${UUID.randomUUID()}")
+    //.save(s"src/main/resources/${UUID.randomUUID()}")
     //println("OK")
 
   }
