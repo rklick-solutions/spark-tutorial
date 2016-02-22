@@ -2,93 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Play-RethinkDB</title>
+    <title>spark-tutorial by rklick-solutions</title>
 </head>
 <body>
-<p>Building Reactive Play application with RethinkDB</p>
-<p>This is a CRUD application, backed by a RethinkDB database. It demonstrates:</p>
-<ul>
-    <li>Handling asynchronous results, Handling time-outs</li>
-    <li>Achieving, Futures to use more idiomatic error handling.</li>
-    <li>Accessing RethinkDB, using Java ReQL command reference.</li>
-    <li>Achieving, table pagination and sorting functionality using interactive FooTable plugin.</li>
-    <li>Replaced the embedded JS &amp; CSS libraries with <a href="http://www.webjars.org/">WebJars</a>.</li>
-    <li>Play and Scala-based template engine implementation</li>
-    <li>Integrating with a CSS framework (Twitter Bootstrap). Twitter Bootstrap requires a different form layout to the
-        default one that the Play form helper generates, so this application also provides an example of integrating a
-        custom form input constructor.
-    </li>
-    <li>Used Bootswatch with Twitter Bootstrap to improve the look and feel of the application</li>
-</ul>
-<h3><a aria-hidden="true" href="#dependency" class="anchor" id="user-content-dependency"><span
-        class="octicon octicon-link"></span></a>Dependency</h3>
+<section class="page-header">
+      <h1 class="project-name">spark-tutorial</h1>
+      <h2 class="project-tagline">This tutorial provides a quick introduction to using Spark</h2>
+      <a href="https://github.com/rklick-solutions/spark-tutorial" class="btn">View on GitHub</a>
+      <a href="https://github.com/rklick-solutions/spark-tutorial/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rklick-solutions/spark-tutorial/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-<p>The rethinkdb-driver is distributed using Maven Central so it can be easily added as a library dependency in your
-    Play Application's SBT build scripts, as follows:</p>
+    <section class="main-content">
+      <p><img src="https://github.com/rklick-solutions/spark-tutorial/blob/master/spark-tutorial-logo.png" alt="Spark Tutorial"></p>
 
-<pre>
-    <code>libraryDependencies += "com.rethinkdb" % "rethinkdb-driver" % "2.2-beta-1"</code>
-</pre>
+<blockquote>
+<p>This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API</p>
 
-<h4><a aria-hidden="true" href="#rethinkdb" class="anchor" id="user-content-rethinkdb"><span class="octicon octicon-link"></span></a>RethinkDb</h4>
+<p>This is the start of using Spark with Scala, from next week onwards we would be working on this tutorial to make it grow.
+We would look at how we can add more functionality into it , then we would be adding more modules to it together. If you have any
+changes then feel free to send in pull requests and we would do the merges :) Stay tuned.</p>
+</blockquote>
+
+<h4>
+<a id="spark-core" class="anchor" href="#spark-core" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core">Spark Core</a>
+</h4>
 
 <ul>
-    <li>Installing RethinkDB : <a href="http://rethinkdb.com/docs/install/">install</a></li>
-    <li>Installing the Java driver : <a href="http://rethinkdb.com/docs/install-drivers/java/">rethinkdb-driver</a></li>
-    <li>Ten-minute guide with RethinkDB and Java : <a href="http://rethinkdb.com/docs/guide/java/">RethinkDB Java</a></li>
-    <li>Start RethinkDB using <code>rethinkdb</code> command and hit <code>http://localhost:8080/</code></li>
-    <li>Create <code>play_rethinkdb</code> database and table <code>r_employees</code> with default configuration</li>
-</ul>
-
-<h5><a aria-hidden="true" href="#usage-of-rethinkdb-java-driver" class="anchor" id="user-content-usage-of-rethinkdb-java-driver"><span class="octicon octicon-link"></span></a>Usage of RethinkDB Java driver</h5>
-
-<p>You can use the drivers from Java like this:</p>
-
-<pre><code>
-    import com.rethinkdb.RethinkDB;
-    import com.rethinkdb.gen.exc.ReqlError;
-    import com.rethinkdb.gen.exc.ReqlQueryLogicError;
-    import com.rethinkdb.model.MapObject;
-    import com.rethinkdb.net.Connection;
-
-    public static final RethinkDB r = RethinkDB.r;
-
-    Connection conn = r.connection().hostname("localhost").port(28015).connect();
-
-    r.db("test").tableCreate("tv_shows").run(conn);
-    r.table("tv_shows").insert(r.hashMap("name", "Star Trek TNG")).run(conn);
-</code></pre>
-
-<p>Please check <a href="/rklick-solutions/play-rethinkdb/blob/master/app/models/rdb/RConnection.scala">RConnection.scala</a> and <a href="/rklick-solutions/play-rethinkdb/blob/master/app/models/rdb/RDatabase.scala">RDatabase.scala</a></p>
-
-<hr>
-
-<h3><a id="user-content-now-play" class="anchor" href="#now-play" aria-hidden="true"><span class="octicon octicon-link"></span></a>Now Play</h3>
-
-<hr>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#introduction-to-apache-spark">Introduction </a>
 
 <ul>
-    <li>The Github code for the project is at : <a href="https://github.com/rklick-solutions/play-rethinkdb">play-rethinkdb</a></li>
-    <li>Clone the project into local system</li>
-    <li>To run the Play framework 2.4.x, you need JDK 8 or later</li>
-    <li>Install Typesafe Activator if you do not have it already. You can get it from here: <a href="http://www.playframework.com/download">http://www.playframework.com/download</a></li>
-    <li>Execute <code>activator clean compile</code> to build the product</li>
-    <li>Execute <code>activator run</code> to execute the product</li>
-    <li>play-rethinkdb should now be accessible at localhost:9000</li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#features-of-apache-spark">Features </a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-spark">Initializing </a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds">RDDs</a></li>
 </ul>
-
-<hr>
-
-<h3><a id="user-content-references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h3>
-
-<hr>
+</li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#create-rdds">Create</a></li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds-operations">Operations</a>
 
 <ul>
-    <li><a href="https://playframework.com/documentation/2.4.x/ScalaHome">Play 2.4.x</a></li>
-    <li><a href="http://rethinkdb.com/api/java/">Java ReQL</a></li>
-    <li><a href="http://getbootstrap.com/css/">Bootstrap</a></li>
-    <li><a href="http://bootswatch.com/">Bootswatch</a></li>
-    <li><a href="http://www.webjars.org/">WebJars</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#1transformations">Transformations</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#2actions">Actions</a></li>
 </ul>
+</li>
+</ul>
+
+<h4>
+<a id="spark-sql" class="anchor" href="#spark-sql" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql">Spark SQL</a>
+</h4>
+
+<ul>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#Introduction">Introduction</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#create-sql-context">Create SQL Context</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-query">Basic Query</a></li>
+</ul>
+</li>
+<li> <a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframes">DataFrames</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-dataframes">Creating DataFrames</a></li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#datafarme-api-example-using-different-types-of-functionality">DataFarme API Functionality</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#action">Action</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-dataframe-functions">Basic DataFrame functions</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#data-frame-operations">DataFrame Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#interoperating-with-rdds">Interoperating with RDDs</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#1-inferring-the-schema-using-reflection">Inferring the Schema using Reflection</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#2-programmatically-specifying-the-schema">Programmatically Specifying the Schema</a></li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#data-sources">Data Sources</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-json-file">DataFrame Operations in JSON file</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-text-file">DataFrame Operations in Text file</a></li>
+<li><a href="https://github.com/rklick-solutions/sparhttps://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-sparkk-tutorial/wiki/Spark-SQL#dataframe-operations-in-csv-file">DataFrame Operations in CSV file</a></li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataset">Datasets</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-datasets">Creating Datasets</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-opeartion">Basic Opeartion</a></li>
+</ul>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rklick-solutions/spark-tutorial">spark-tutorial</a> is maintained by <a href="https://github.com/rklick-solutions">rklick-solutions</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
 </body>
 </html>
