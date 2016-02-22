@@ -22,48 +22,85 @@
       <p>This tutorial provides a quick introduction to using Spark. It demonstrates the basic functionality of RDD and DataFrame API</p>
 
 <h4>
-<a id="initializing-spark" class="anchor" href="#initializing-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initializing Spark</h4>
-
-<div class="highlight highlight-source-scala"><pre><span class="pl-k">val</span> <span class="pl-en">conf</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SparkConf</span>().setAppName(appName).setMaster(master)
-<span class="pl-k">new</span> <span class="pl-en">SparkContext</span>(conf)</pre></div>
-
-<p>Check <a href="https://github.com/rklick-solutions/spark-tutorial/blob/master/src/main/scala/com/tutorial/utils/SparkCommon.scala">SparkCommon</a></p>
-
-<p><code>Note:</code> Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one.</p>
-
-<p>We have tried to cover basics of Spark Core, SQL, Streaming, ML and GraphX programming contexts.</p>
-
-<h4>
-<a id="rdd-functionality" class="anchor" href="#rdd-functionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RDD Functionality</h4>
+<a id="spark-core" class="anchor" href="#spark-core" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core">Spark Core</a>
+</h4>
 
 <ul>
-<li>Creations</li>
-<li>Operations</li>
-<li>Transformations</li>
-<li>Actions</li>
-</ul>
-
-<p>For more information <a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core">check</a></p>
-
-<h4>
-<a id="spark-sql" class="anchor" href="#spark-sql" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Spark SQL</h4>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#spark-core">Spark Core</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#introduction-to-apache-spark">Introduction </a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#features-of-apache-spark">Features </a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-spark">Initializing </a></li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds">RDDs</a>
 
 <ul>
-<li>Create SQL Context</li>
-<li>Creating DataFrames</li>
-<li>Creating Datasets</li>
-<li>Inferring the Schema using Reflection</li>
-<li>Programmatically Specifying the Schema</li>
-<li>DataFrame Operations in JSON file</li>
-<li>DataFrame Operations in Text file</li>
-<li>DataFrame Operations in CSV file</li>
-<li>DataFarme API</li>
-<li>Action</li>
-<li>Basic DataFrame functions</li>
-<li>DataFrame Operations</li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#create-rdds">Create</a></li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#rdds-operations">Operations</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#1transformations">Transformations</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#2actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
-<p>For more information <a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL">check</a></p>
+<h4>
+<a id="spark-sql" class="anchor" href="#spark-sql" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql">Spark SQL</a>
+</h4>
+
+<ul>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#spark-sql">Spark SQL</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#create-sql-context">Create SQL Context</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-query">Basic Query</a></li>
+</ul>
+</li>
+<li> <a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframes">DataFrames</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-dataframes">Creating DataFrames</a></li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#datafarme-api-example-using-different-types-of-functionality">DataFarme API Functionality</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#action">Action</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-dataframe-functions">Basic DataFrame functions</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#data-frame-operations">DataFrame Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#interoperating-with-rdds">Interoperating with RDDs</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#1-inferring-the-schema-using-reflection">Inferring the Schema using Reflection</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#2-programmatically-specifying-the-schema">Programmatically Specifying the Schema</a></li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#data-sources">Data Sources</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-json-file">DataFrame Operations in JSON file</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataframe-operations-in-text-file">DataFrame Operations in Text file</a></li>
+<li><a href="https://github.com/rklick-solutions/sparhttps://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#initializing-sparkk-tutorial/wiki/Spark-SQL#dataframe-operations-in-csv-file">DataFrame Operations in CSV file</a></li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#dataset">Datasets</a>
+
+<ul>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#creating-datasets">Creating Datasets</a></li>
+<li><a href="https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-opeartion">Basic Opeartion</a></li>
+</ul>
+</li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/rklick-solutions/spark-tutorial">spark-tutorial</a> is maintained by <a href="https://github.com/rklick-solutions">rklick-solutions</a>.</span>
