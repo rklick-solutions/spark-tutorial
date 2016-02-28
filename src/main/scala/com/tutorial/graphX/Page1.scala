@@ -1,4 +1,5 @@
 package com.tutorial.graphX
+
 import com.tutorial.utils.SparkCommon
 import org.apache.spark.graphx._
 
@@ -10,12 +11,16 @@ object Page1 {
 
   def main(args: Array[String]) {
 
+
+    val PATH_ADD = "src/main/resources/followers.txt"
+
+
     /**
       * Load the graph as in the PageRank example
       *
       */
 
-    val graph = GraphLoader.edgeListFile(sc,"src/main/resources/followers.txt")
+    val graph = GraphLoader.edgeListFile(sc, PATH_ADD)
 
 
     /**
@@ -26,8 +31,8 @@ object Page1 {
     /**
       * Join the connected components with the usernames
       */
-    val users = sc.textFile("src/main/resources/users.txt").map { line =>
-      val fields = line.split(",")
+    val users = sc.textFile(PATH_ADD).map { line =>
+      val fields = line.split(" ")
       (fields(0).toLong, fields(1))
     }
     val ccByUsername = users.join(cc).map {
@@ -38,10 +43,6 @@ object Page1 {
       * Print the result
       */
     println(ccByUsername.collect().mkString("\n"))
-
-
-
-
 
 
   }

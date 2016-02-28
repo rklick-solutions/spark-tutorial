@@ -10,25 +10,30 @@ object PageRank1 {
 
   val sc = SparkCommon.sparkContext
 
+  val file_path = "src/main/resources/followers.txt"
+  val file_path1 = "src/main/resources/users.txt"
+
   def main(args: Array[String]) {
 
     /**
       * Load the edges as a graph
       */
 
-    val graph = GraphLoader.edgeListFile(sc, "src/main/resources/followers.txt")
+    val graph = GraphLoader.edgeListFile(sc, file_path)
 
     /**
       * Run PageRank
       */
 
+    val startTime = System.currentTimeMillis()
     val ranks = graph.pageRank(0.0001).vertices
+    println(s"Taking time::::::::${System.currentTimeMillis() - startTime}")
 
     /**
       * Join the ranks with the usernames
       */
 
-    val users = sc.textFile("src/main/resources/users.txt").map { line =>
+    val users = sc.textFile(file_path1).map { line =>
       val fields = line.split(",")
       (fields(0).toLong, fields(1))
     }
@@ -44,5 +49,6 @@ object PageRank1 {
 
 
   }
+
 
 }

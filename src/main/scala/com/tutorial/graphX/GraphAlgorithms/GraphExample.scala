@@ -18,8 +18,8 @@ object GraphExample {
       * Load my user data and parse into tuples of user id and attribute list
       */
 
-    val users = (sc.textFile("src/main/resources/users.txt")
-      .map(line => line.split(",")).map( parts => (parts.head.toLong, parts.tail) ))
+    val users = sc.textFile("src/main/resources/users.txt")
+      .map(line => line.split(",")).map(parts => (parts.head.toLong, parts.tail))
 
     /**
       * Parse the edge data which is already in userId -> userId format.
@@ -68,9 +68,6 @@ object GraphExample {
       * print top 5 rank.
       */
     println(userInfoWithPageRank.vertices.top(5)(Ordering.by(_._2._1)).mkString("\n"))
-
-
-
 
 
   }

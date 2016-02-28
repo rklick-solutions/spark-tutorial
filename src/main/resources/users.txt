@@ -2,6 +2,6 @@
 2,Kohali,Virat Kohali
 3,Ved,Ved Prakash Singh
 4,justinbieber,Justin Bieber
-6,Sachin,Sachin Tendulkar
-7,Salman,Salman khan
-8,Kejriwal
+5,Sachin,Sachin Tendulkar
+6,Salman,Salman khan
+7,Kejriwal

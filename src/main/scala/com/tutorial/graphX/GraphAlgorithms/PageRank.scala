@@ -13,13 +13,15 @@ object PageRank {
 
   def main(args: Array[String]) {
 
+    val file_Path="src/main/resources/twitter_followers.txt"
+
 
     /**
       * Load the edges from file
       * with 20 partitions:
       *
       */
-    val edgesFile = sc.textFile("src/main/resources/twitter_followers.txt", 20)
+    val edgesFile = sc.textFile(file_Path, 20)
 
     /**
       * Flatten and convert it into an RDD
@@ -55,7 +57,11 @@ object PageRank {
     /**
       * Run PageRank and get the vertices:
       */
+    val startTime = System.currentTimeMillis()
     val ranks = graph.pageRank(0.001).vertices
+    println(s"Taking time::::::::${System.currentTimeMillis() - startTime}")
+
+
 
     ranks.foreach(println)
 
