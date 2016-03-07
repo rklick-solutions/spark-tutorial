@@ -12,8 +12,11 @@ object ConnectedGraph {
 
   val sc = SparkCommon.sparkContext
 
-  val file_path = "src/main/resources/facebook_edges.csv"
-  val file_path1 = "src/main/resources/facebook_nodes.csv"
+  //val file_path = "src/main/resources/facebook_edges.csv"
+  //val file_path1 = "src/main/resources/facebook_nodes.csv"
+
+  val file_path = "src/main/resources/relationedge.csv"
+  val file_path1 = "src/main/resources/relationnode.csv"
 
   def main(args: Array[String]) {
 
@@ -28,11 +31,16 @@ object ConnectedGraph {
     val graph = Graph(vertices, edges)
     val cc = graph.connectedComponents
 
+
     val ccVertices = cc.vertices
-    ccVertices.collect.foreach(println)
+    val ccEdges =cc.edges
+    //print("connected vertices" )
+    //ccVertices.collect.foreach(println )
+    println("connected vertices" + ccVertices.collect().mkString(","))
+    println("connected edges" + ccEdges.collect().mkString(","))
   }
 
-  def getVertices(file_path: String): RDD[(Long, String)] = {
+  def getVertices(file_path1: String): RDD[(Long, String)] = {
     val verticesFile = sc.textFile(file_path1)
 
     val vertices = verticesFile.map(_.split(",")).map(e =>

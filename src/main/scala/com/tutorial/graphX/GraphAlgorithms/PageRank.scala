@@ -59,6 +59,7 @@ object PageRank {
       */
     val startTime = System.currentTimeMillis()
     val ranks = graph.pageRank(0.001).vertices
+    println("#########ranks#####"+ranks.collect().foreach(println))
     println(s"Taking time::::::::${System.currentTimeMillis() - startTime}")
 
 
@@ -73,7 +74,9 @@ object PageRank {
     val swappedRanks = ranks.map(_.swap)
 
 
-    swappedRanks.foreach(println)
+    //swappedRanks.foreach(println)
+
+    println("ranks is in the (vertex ID, pagerank)" + swappedRanks.collect().mkString(" \n"))
 
 
     /**
@@ -83,7 +86,9 @@ object PageRank {
     val sortedRanks = swappedRanks.sortByKey(false)
 
 
-    sortedRanks.foreach(println)
+    //sortedRanks.foreach(print)
+
+    println("highest ranked pages first" + sortedRanks.collect().mkString("\n"))
 
     /**
       * Get the highest ranked page:
@@ -91,7 +96,8 @@ object PageRank {
 
     val highest = sortedRanks.first
 
-    highest.toString().mkString(" ").foreach(println)
+    //highest.toString().mkString(" ").foreach(print)
+    println("highest ranked page" + highest.toString())
 
     /**
       * The preceding command gives the vertex id,
@@ -99,6 +105,9 @@ object PageRank {
       */
 
     val allJoin = ranks.join(vertices)
+    println("##################################################")
+    println("allJoin allJoin page" + allJoin.collect().foreach(println))
+    println("##################################################")
 
 
     /**
@@ -112,8 +121,14 @@ object PageRank {
       * Print the top five ranked pages
       */
 
-    finalAll.collect().take(5).foreach(println)
-    //allJoin.take(5).collect.foreach(println)
+    val startTime1 = System.currentTimeMillis()
+   println("top five ranked pages" + finalAll.collect().take(5).mkString("\n"))
+    //finalAll.collect().take(5).foreach(println)
+    println(s"Taking time::::::::${System.currentTimeMillis() - startTime1}")
+
+
+
+    //allJoin.collect().take(5).foreach(println)
 
 
   }

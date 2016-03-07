@@ -79,7 +79,7 @@ object Operations {
       * of each vertex (as VertexRDD[Int] ):
       */
 
-    //graph.inDegrees.foreach(println)
+    graph.inDegrees.foreach(println)
 
 
 

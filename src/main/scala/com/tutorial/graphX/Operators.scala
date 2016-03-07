@@ -82,6 +82,23 @@ object Operators {
     ).collect.foreach(println(_))
 
 
+
+    // Count all users which are postdocs
+  val count_User=  graph.vertices.filter { case (id, (name, pos)) => pos == "postdoc" }.count
+    print(" Count user are postdocs:" +count_User)
+
+
+    // Count all the edges where src > dst
+    graph.edges.filter(e => e.srcId > e.dstId).count
+
+    val count_Edges= graph.edges.filter(e => e.srcId > e.dstId).count
+
+    print(" count edges: " +count_Edges)
+
+    val result =graph.edges.filter { case Edge(src, dst, prop) => src > dst }.count
+
+    print("result :" + result)
+
   }
 
 }

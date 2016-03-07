@@ -18,16 +18,20 @@ object GraphExample {
       * Load my user data and parse into tuples of user id and attribute list
       */
 
-    val users = sc.textFile("src/main/resources/users.txt")
-      .map(line => line.split(",")).map(parts => (parts.head.toLong, parts.tail))
+    //val users = sc.textFile("src/main/resources/users.txt")
+    //  .map(line => line.split(",")).map(parts => (parts.head.toLong, parts.tail))
+
+    val users = sc.textFile("src/main/resources/users1.txt")
+     .map(line => line.split(",")).map(parts => (parts.head.toLong, parts.tail))
 
     /**
       * Parse the edge data which is already in userId -> userId format.
       */
 
 
-    val followerGraph = GraphLoader.edgeListFile(sc, "src/main/resources/followers.txt")
+   // val followerGraph = GraphLoader.edgeListFile(sc, "src/main/resources/followers.txt")
 
+    val followerGraph = GraphLoader.edgeListFile(sc, "src/main/resources/followers1.txt")
     /**
       * Attach the user attributes.
       */

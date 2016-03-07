@@ -13,6 +13,9 @@ object PageRank1 {
   val file_path = "src/main/resources/followers.txt"
   val file_path1 = "src/main/resources/users.txt"
 
+  //val file_path = "src/main/resources/relationedge.csv"
+  //val file_path1 = "src/main/resources/relationnode.csv"
+
   def main(args: Array[String]) {
 
     /**

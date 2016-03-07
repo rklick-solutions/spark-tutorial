@@ -1,0 +1,7 @@
+1,Modi,Narender Modi,india
+2,Kohali,Virat Kohali,delhi
+3,Ved,Ved Prakash Sing,up
+4,justinbieber,Justin Bieber,us
+5,Sachin,Sachin Tendulkar,mumbai
+6,Salman,Salman khan,mumbai
+7,Kejriwal,Delhi,india

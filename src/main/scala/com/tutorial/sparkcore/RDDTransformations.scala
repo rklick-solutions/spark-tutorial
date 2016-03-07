@@ -137,8 +137,10 @@ object RDDTransformations {
       * groupByKey() Group values with the same key.
       */
     val inputTupplesList = sc.parallelize(List((1, 2), (3, 5), (3, 7)))
-    val resultGroupByKey = inputTupplesList.reduceByKey((x, y) => x + y)
-    println("Group values with the same key:" + resultGroupByKey.collect().mkString(","))
+    val resultGroupByKey = inputTupplesList.groupByKey()
+    println("Group values  with the same Key:" +resultGroupByKey.collect.mkString(","))
+
+    //println("Group values with the same key:" + resultGroupByKey.collect().mkString(","))
 
     /**
       * Transformations on two pair RDDs (rdd = {(1, 2), (3, 5), (3, 7)} other = {(5, 9)})
