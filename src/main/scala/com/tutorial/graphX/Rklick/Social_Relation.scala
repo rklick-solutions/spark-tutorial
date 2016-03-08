@@ -5,11 +5,10 @@ import org.apache.spark.graphx.{Graph, Edge}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
-
 /**
-  * Created by ved on 7/3/16.
+  * Created by ved on 8/3/16.
   */
-object Connected_RelationSpecialization {
+object Social_Relation {
 
   def main(args: Array[String]) {
 
@@ -33,8 +32,9 @@ object Connected_RelationSpecialization {
       .format("com.databricks.spark.csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load("src/main/resources/Cricket_Edges.csv")
+      // .load("src/main/resources/Cricket_Edges.csv")
       //.load("src/main/resources/Cricket_Edges1.csv")
+      .load("src/main/resources/Cricket_Edges_Follower.csv")
 
     /**
       * based on specialization
@@ -47,11 +47,22 @@ object Connected_RelationSpecialization {
 
     /**
       * based on Location
+
+      * val selectedData1 = edgeDf.select("id", "id1", "location")
+      * selectedData1.write
+      * .format("com.databricks.spark.csv")
+      * .option("header", "true")
       */
-    val selectedData1 = edgeDf.select("id", "id1", "location")
+
+    /**
+      * based on Location
+      */
+
+    val selectedData1 = edgeDf.select("id", "id1", "follow")
     selectedData1.write
       .format("com.databricks.spark.csv")
       .option("header", "true")
+
 
 
     // verticesDf.show()
@@ -68,18 +79,27 @@ object Connected_RelationSpecialization {
 
     /**
       * Based on specialization
-       def getEdges(df1: DataFrame): RDD[Edge[String]] = {
-       df1.map {
-       case row => Edge(row.getAs[Any]("id").toString.toLong,
-       row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("specialization").toString)
-       }
-       }
+      * def getEdges(df1: DataFrame): RDD[Edge[String]] = {
+      * df1.map {
+      * case row => Edge(row.getAs[Any]("id").toString.toLong,
+      * row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("specialization").toString)
+      * }
+      * }
+      */
+
+    /** def getEdges(df1: DataFrame): RDD[Edge[String]] = {
+      * df1.map {
+      * case row => Edge(row.getAs[Any]("id").toString.toLong,
+      * row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("location").toString)
+      * }
+      * }
+
       */
 
     def getEdges(df1: DataFrame): RDD[Edge[String]] = {
       df1.map {
         case row => Edge(row.getAs[Any]("id").toString.toLong,
-          row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("location").toString)
+          row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("follow").toString)
       }
     }
 
@@ -129,7 +149,7 @@ object Connected_RelationSpecialization {
 
       */
 
-    /**
+    /*/**
       * 1.Analysis data on basis of specialization
       *
       */
@@ -172,18 +192,25 @@ object Connected_RelationSpecialization {
       location.equals("ranchi")
     }.collect.foreach(println)
 
-
+*/
     /**
       * Analysis based Age
       *
       */
 
 
-    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
-      age.toLong > 26
+    //  graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+    //   age.toLong > 26
+    //  }.collect.foreach(println)
+
+    val c2 = graph.edges.filter { case Edge(from, to, property)
+    => property == "friend" | property == "good friend" | property == "best friend" | property == "follow" | property == "compititor"
     }.collect.foreach(println)
 
-
+    /**
+      * count the edges
+      */
+    //println("count edge:"+c2)
   }
 }
 
