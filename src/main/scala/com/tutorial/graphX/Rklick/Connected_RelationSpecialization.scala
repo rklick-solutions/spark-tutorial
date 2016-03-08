@@ -105,6 +105,11 @@ object Connected_RelationSpecialization {
 
     */
 
+    /**
+      * 1.Analysis data on basis of specialization
+      *
+      */
+
     graph.vertices.filter { case (id, (name, age, location, specialization)) =>
       specialization.equals("all rounder")
     }.collect.foreach(println)
@@ -118,6 +123,30 @@ object Connected_RelationSpecialization {
     }.collect.foreach(println)
 
 
+    /**
+      * 2. Analysis based on location
+      *
+      */
+
+    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      location.equals("delhi")
+    }.collect.foreach(println)
+
+    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      location.equals("mumbai")
+    }.collect.foreach(println)
+
+    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      location.equals("chennai")
+    }.collect.foreach(println)
+
+    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      location.equals("up")
+    }.collect.foreach(println)
+
+    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      location.equals("ranchi")
+    }.collect.foreach(println)
 
   }
 }
