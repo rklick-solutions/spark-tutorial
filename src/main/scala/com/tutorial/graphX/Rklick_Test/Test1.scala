@@ -15,47 +15,11 @@ object Test1 {
     val sc = SparkCommon.sparkContext
     val sqlContext = new SQLContext(sc)
 
-
-    val verticesDf = sqlContext.read
+    val dataSet = sqlContext.read
       .format("com.databricks.spark.csv")
       .option("header", "true")
       .option("inferSchema", "true")
       .load("src/main/resources/Cricket_Node_Rklick_Test.csv")
-
-
-    val selectedData = verticesDf.select("id", "fid", "lid", "follow", "name", "age", "location", "specialization", "marital", "twitter", "fb", "movie")
-    selectedData.write
-      .format("com.databricks.spark.csv")
-      .option("header", "true")
-
-    val edgeDf = sqlContext.read
-      .format("com.databricks.spark.csv")
-      .option("header", "true")
-      .option("inferSchema", "true")
-      .load("src/main/resources/Cricket_Node_Rklick_Test.csv")
-    //.load("src/main/resources/Cricket_Edges1.csv")
-
-    /**
-      * based on specialization
-      * val selectedData1 = edgeDf.select("id", "id1", "specialization")
-      * selectedData1.write
-      * .format("com.databricks.spark.csv")
-      * .option("header", "true")
-
-      */
-
-    /**
-      * based on Location
-      */
-    val selectedData1 = edgeDf.select("id", "fid", "lid", "follow", "name", "age", "location", "specialization", "marital", "twitter", "fb", "movie")
-    selectedData1.write
-      .format("com.databricks.spark.csv")
-      .option("header", "true")
-
-
-    // verticesDf.show()
-    //edgeDf.show()
-
 
     def getVertices(df: DataFrame): RDD[(Long, (Long, Long, String, String, Long, String, String, String, String, String, String))] = {
       df.map {
@@ -66,33 +30,6 @@ object Test1 {
       }
     }
 
-    /**
-      * Based on specialization
-      * def getEdges(df1: DataFrame): RDD[Edge[String]] = {
-      * df1.map {
-      * case row => Edge(row.getAs[Any]("id").toString.toLong,
-      * row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("specialization").toString)
-      * }
-      * }
-      */
-
-    /*def getEdges(df1: DataFrame): RDD[Edge[String]] = {
-      df1.map {
-        case row => Edge(row.getAs[Any]("fid").toString.toLong,
-          row.getAs[Any]("id").toString.toLong, row.getAs[Any]("follow").toString)
-      }
-    }*/
-    /*
-
-        def getEdges(df1: DataFrame): RDD[Edge[String]] = {
-          df1.map {
-            case row => Edge(row.getAs[Any]("id").toString.toLong,
-              row.getAs[Any]("lid").toString.toLong, row.getAs[Any]("location").toString)
-          }
-        }
-    */
-
-
     def getEdges(df1: DataFrame): RDD[Edge[String]] = {
       df1.map {
         case row => Edge(row.getAs[Any]("id").toString.toLong,
@@ -100,152 +37,69 @@ object Test1 {
       }
     }
 
-
-
-    val vertices = getVertices(verticesDf)
-    val edges = getEdges(edgeDf)
+    val vertices = getVertices(dataSet)
+    val edges = getEdges(dataSet)
 
     /**
       * Create Graph.
       */
-
     val graph = Graph(vertices, edges)
-
-
-    //graph.connectedComponents().vertices.collect.foreach(println)
     graph.vertices.collect.foreach(println)
     graph.edges.collect().foreach(println)
-    //graph.connectedComponents().edges.collect.foreach(println)
-
-    //graph.collectNeighborIds()
-    //graph.vertices.collect().foreach(println)
-
-    //graph.connectedComponents().vertices
-
-    /**
-      * val connByAllRounder = vertices.join(connected).map {
-      * case (id, ((name, age, location, specialization), conn)) => (conn, name, specialization)
-      * }
-      * val connByBowler = vertices.join(connected).map {
-      * case (id, ((name, age, location, specialization), conn)) => (conn, name, specialization)
-
-      * }
-
-      * val connByBatting = vertices.join(connected).map {
-      * case (id, ((name, age, location, specialization), conn)) => (conn, name, specialization)
-
-      * }
-
-      * connByAllRounder.collect.foreach {
-      * case (conn, name, specialization) =>
-      * println(f"AllRounder $conn $name $specialization")
-      * }
-      * connByBatting.collect.foreach {
-      * case (conn, name, specialization) =>
-      * println(f"Batting $conn $name $specialization")
-      * }
-      * connByBowler.collect.foreach {
-      * case (conn, name, specialization) =>
-      * println(f"Bowler$conn $name $specialization")
-      * }
-
-      */
-
 
     /**
       * 1.Analysis data on basis of specialization
       *
       */
-
-    val s1 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      specialization.equals("all rounder")
+    printSpecialization("all rounder", "batting", "bowler")
+    def printSpecialization(specs: String*): Unit = {
+      specs.foreach { spec =>
+        graph.vertices.filter { case (id, (_, _, _, _, _, _, specialization, _, _, _, _)) =>
+          specialization.equals(spec)
+        }.collect.foreach { case (id, (_, _, _, name, _, _, _, _, _, _, _)) =>
+          println(f"$spec:$id $name")
+        }
+      }
     }
-
-    s1.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"all rounder:$id $name")
-    }
-
-
-    val s2 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      specialization.equals("batting")
-    }
-
-    s2.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"batting:$id $name")
-
-    }
-
-    val s3 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      specialization.equals("bowler")
-    }
-
-
-    s3.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"bowler:$id $name")
-
-    }
-
 
     /**
       * 2. Analysis based on location
       *
       */
+    printLocations("delhi", "mumbai", "chennai", "up", "ranchi")
 
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      location.equals("delhi")
-    }.collect.foreach(println)
-
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      location.equals("mumbai")
-    }.collect.foreach(println)
-
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      location.equals("chennai")
-    }.collect.foreach(println)
-
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      location.equals("up")
-    }.collect.foreach(println)
-
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      location.equals("ranchi")
-    }.collect.foreach(println)
-
-    /*val c = graph.edges.filter { case Edge(from, to, property)
-    => property == "friend" | property == "good friend" | property == "best friend"
-    }.collect.foreach(println)*/
+    def printLocations(locations: String*): Unit = {
+      locations.foreach { name =>
+        graph.vertices.filter { case (id, (_, _, _, _, _, location, _, _, _, _, _)) =>
+          location.equals(name)
+        }.collect.foreach(println)
+      }
+    }
 
     /**
       * 3.Analysis data on basis of follower
       *
       */
+    printFollowers("friend", "best friend", "good friend")
 
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      follow.equals("friend")
+    def printFollowers(followers: String*): Unit = {
+      followers.foreach { value =>
+        graph.vertices.filter { case (id, (_, _, follow, _, _, _, _, _, _, _, _)) =>
+          follow.equals(value)
+        }.collect.foreach(println)
+      }
+    }
+
+    graph.edges.filter { case Edge(from, to, property) =>
+      property == "friend" | property == "good friend" | property == "best friend"
     }.collect.foreach(println)
 
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      follow.equals("best friend")
+    graph.edges.filter { case Edge(from, to, property) =>
+      property == "bowler" | property == "batting" | property == "all rounder"
     }.collect.foreach(println)
 
-    graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      follow.equals("good friend")
-    }.collect.foreach(println)
-
-
-    val c1 = graph.edges.filter { case Edge(from, to, property)
-    => property == "friend" | property == "good friend" | property == "best friend"
-    }.collect.foreach(println)
-
-    val c2 = graph.edges.filter { case Edge(from, to, property)
-    => property == "bowler" | property == "batting" | property == "all rounder"
-    }.collect.foreach(println)
-
-    val c3 = graph.edges.filter { case Edge(from, to, property)
-    => property == "delhi" | property == "up" | property == "chennai" | property == "mumbai" | property == "ranchi"
+    graph.edges.filter { case Edge(from, to, property) =>
+      property == "delhi" | property == "up" | property == "chennai" | property == "mumbai" | property == "ranchi"
     }.collect.foreach(println)
 
 
@@ -253,54 +107,34 @@ object Test1 {
       * 4.Analysis based Age
       *
       */
-
-
-    val c4 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
+    graph.vertices.filter { case (id, (_, _, _, name, age, _, _, _, _, _, _)) =>
       age.toLong > 26.toShort
+    }.collect.foreach { case (id, (_, _, _, name, age, _, _, _, _, _, _)) =>
+      println(f"Younger:$id $name $age")
     }
 
-    c4.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"Younger:$id $name $age")
-
-
-    }
-
-    val c5 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
+    graph.vertices.filter { case (id, (_, _, _, name, age, _, _, _, _, _, _)) =>
       age.toLong < 26.toShort
-    }
-
-    c5.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"young :$id $name $age")
+    }.collect.foreach { case (id, (_, _, _, name, age, _, _, _, _, _, _)) =>
+      println(f"young :$id $name $age")
     }
 
     /**
       * 5.Analysis based on marital
       *
       */
-    val m1 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      marital.equals("Married")
+    List("Married", "Unmarried").foreach { status =>
+      graph.vertices.filter { case (id, (_, _, _, _, _, _, _, marital, _, _, _)) =>
+        marital.equals(status)
+      }.collect.foreach { case (id, (_, _, _, name, age, _, _, _, _, _, _)) =>
+          println(f"$status :$id $name $age")
+      }
     }
 
-    m1.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"Married :$id $name $age")
-    }
-
-    val m2 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-      marital.equals("Unmarried")
-    }
-
-    m2.collect.foreach {
-      case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"unmarried :$id $name $age")
-    }
     /**
       * 5.Analysis based on twitter
       *
       */
-
     val t1 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
       twitter.equals("y")
     }
@@ -351,10 +185,8 @@ object Test1 {
 
     movie1.collect.foreach {
       case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
-        println(f"Hollywood :$id $name $age")  }
-
-
-
+        println(f"Hollywood :$id $name $age")
+    }
 
     val movie2 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
       movie.equals("Bollywood")
@@ -365,6 +197,6 @@ object Test1 {
         println(f"Bollywood :$id $name $age")
     }
 
-
   }
+
 }
