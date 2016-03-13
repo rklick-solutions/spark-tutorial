@@ -1,13 +1,14 @@
 package com.tutorial.graphX.Rklick
+
 import com.tutorial.utils.SparkCommon
-import org.apache.spark.graphx._
+import org.apache.spark.graphx.{Graph, Edge}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
 /**
-  * Created by ved on 7/3/16.
+  * Created by ved on 9/3/16.
   */
-object Cricket_Relation {
+object Test {
 
   val sc = SparkCommon.sparkContext
 
@@ -36,9 +37,9 @@ object Cricket_Relation {
       .format("com.databricks.spark.csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load("src/main/resources/Cricket_Edges.csv")
+      .load("src/main/resources/Cricket_Node.csv")
 
-    val selectedData1 = edgeDf.select("id", "id1", "location")
+    val selectedData1 = edgeDf.select("id", "name", "age", "location", "specialization")
     selectedData1.write
       .format("com.databricks.spark.csv")
       .option("header", "true")
@@ -58,7 +59,7 @@ object Cricket_Relation {
     def getEdges(df1: DataFrame): RDD[Edge[String]] = {
       df1.map {
         case row => Edge(row.getAs[Any]("id").toString.toLong,
-          row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("location").toString)
+          row.getAs[Any]("age").toString.toLong, row.getAs[Any]("location").toString)
       }
     }
 
@@ -107,17 +108,17 @@ object Cricket_Relation {
 
     //page rank
 
-    val c1 = graph.vertices.filter { case (id, (name, age, location, specialization)) => age.
-      toLong > 20
-    }.count
+   // val c1 = graph.vertices.filter { case (id, (name, age, location, specialization)) => age.
+   //   toLong > 20
+  //  }.count
 
 
     // val c2 = graph.edges.collect().foreach(println)
-    val c2 = graph.edges.filter { case Edge(src, to, dest)
-    => dest == "delhi" | dest == "up"
-    }.count
-    println("Vertices count : " + c1)
-    println("Edges count : " + c2)
+   // val c2 = graph.edges.filter { case Edge(src, to, dest)
+   // => dest == "delhi" | dest == "up"
+  //  }.count
+  //  println("Vertices count : " + c1)
+   // println("Edges count : " + c2)
 
     val startTime = System.currentTimeMillis()
     val tolerance = 0.0001
@@ -176,6 +177,4 @@ object Cricket_Relation {
 
 
   }
-
 }
-

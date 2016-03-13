@@ -1,0 +1,17 @@
+id,fid,lid,follow,name,age,location,specialization,marital,twitter,fb,movie
+1,3,1, friend,Mahendra Singh Dhoni ,38,ranchi,all rounder,Married,y,y,Bollywood
+2,5,16,friend,Virat Kohli,25,delhi,batting,Unmarried,y,y,Hollywood
+3,6,4,best friend,Shikhar Dhawan,25,mumbai,batting,Unmarried,y,y,Hollywood
+4,2,3,compititor,Rohit Sharma,33,mumbai,batting,Unmarried,y,y,Hollywood
+5,6,10, friend,Stuart Binny,22,chennai,bowler,Unmarried,y,n,Hollywood
+6,8,7,good friend,Suresh Raina,32,up,all rounder,Married,n,n,Hollywood
+7,9,6, friend,Ravindra Jadeja,28,up,all rounder,Unmarried,n,n,Hollywood
+8,1,9, friend,Ambati Rayudu,21,mumbai,batting,Unmarried,n,n,Hollywood
+9,4,8, friend,Axar Patel,22,mumbai,all rounder,Unmarried,n,n,Bollywood
+10,16,5,good friend,Ravichandran Ashwin,33,chennai,all rounder,Married,n,y,Bollywood
+11,14,12,good friend,Bhuvneshwar Kumar,26,up,bowler,Unmarried,y,y,Bollywood
+12,13,11, best friend,Mohammed Shami,25,up,bowler,Unmarried,y,y,Bollywood
+13,10,12,follow,Umesh Yadav,30,up,bowler,Married,y,n,Bollywood
+14,15,15,follow,Ishant Sharma,33,mumbai,bowler,Unmarried,n,n,Bollywood
+15,11,14,compititor,Sachin,40,mumbai,batting,Married,y,y,Bollywood
+16,12,2,friend,Shehwag,38,delhi,bowler,Married,y,n,Bollywood

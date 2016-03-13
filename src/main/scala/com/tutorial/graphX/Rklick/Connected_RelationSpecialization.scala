@@ -1,7 +1,7 @@
 package com.tutorial.graphX.Rklick
 
 import com.tutorial.utils.SparkCommon
-import org.apache.spark.graphx.{Graph, Edge}
+import org.apache.spark.graphx.{Edge, Graph}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
@@ -34,7 +34,7 @@ object Connected_RelationSpecialization {
       .option("header", "true")
       .option("inferSchema", "true")
       .load("src/main/resources/Cricket_Edges.csv")
-      //.load("src/main/resources/Cricket_Edges1.csv")
+    //.load("src/main/resources/Cricket_Edges1.csv")
 
     /**
       * based on specialization
@@ -68,12 +68,12 @@ object Connected_RelationSpecialization {
 
     /**
       * Based on specialization
-       def getEdges(df1: DataFrame): RDD[Edge[String]] = {
-       df1.map {
-       case row => Edge(row.getAs[Any]("id").toString.toLong,
-       row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("specialization").toString)
-       }
-       }
+      * def getEdges(df1: DataFrame): RDD[Edge[String]] = {
+      * df1.map {
+      * case row => Edge(row.getAs[Any]("id").toString.toLong,
+      * row.getAs[Any]("id1").toString.toLong, row.getAs[Any]("specialization").toString)
+      * }
+      * }
       */
 
     def getEdges(df1: DataFrame): RDD[Edge[String]] = {
@@ -179,9 +179,31 @@ object Connected_RelationSpecialization {
       */
 
 
-    graph.vertices.filter { case (id, (name, age, location, specialization)) =>
-      age.toLong > 26
-    }.collect.foreach(println)
+    val c2 = graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      age.toLong > 26.toShort
+    }
+
+    c2.collect.foreach {
+      case (id, (name, age, location, specialization)) =>
+        println(f"Younger:$id $name $age")
+
+
+    }
+
+    val c1 = graph.vertices.filter { case (id, (name, age, location, specialization)) =>
+      age.toLong < 26.toShort
+    }
+
+    c1.collect.foreach {
+      case (id, (name, age, location, specialization)) =>
+        println(f"young :$id $name $age")
+
+
+    }
+
+    println(c1.top(5)(Ordering.by(_._2._1)).mkString("\n"))
+
+    //graph.vertices.filter()
 
 
   }

@@ -1,0 +1,16 @@
+ID,RelationId,User,Relationship
+2000,2001,Zim,Like
+2001,2002,John,friend
+2002,2000,Alex,follow
+2003,2004,Charlie,Like
+2004,2005,Xin,follower
+2005,2003,Supriya,Like
+2006,2007,Jelly,follow
+2007,2008,Allen,friend
+2008,2009,Pepi,friend
+2009,2010,Sandy,friend
+2010,2011,San,friend
+2011,2012,Bob,Like
+2012,2013,Alice,Like
+2013,2014,Eliza,Like
+2014,2015,Annie,Like
