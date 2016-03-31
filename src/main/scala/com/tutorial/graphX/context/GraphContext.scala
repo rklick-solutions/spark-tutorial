@@ -1,8 +1,13 @@
 package com.tutorial.graphX.context
 
-import org.apache.spark.graphx.VertexId
+import java.util.Date
+
+import org.apache.spark.graphx.{Edge, Graph, VertexId}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
+
+import scala.annotation.tailrec
+import org.apache.spark.sql.functions._
 
 
 /**
@@ -10,35 +15,6 @@ import org.apache.spark.sql.DataFrame
   */
 object GraphContext extends GraphHelper {
 
-  /**
-    *
-    * @param df        The DataFrame
-    * @param msg       The KQMessage
-    * @return
-    */
-  def toGraph(df: DataFrame, msg: KQMessage): Either[RException, Boolean] = {
-    val startTime = System.currentTimeMillis()
-    error(s"APPID:::::${msg.appId}::::::::::::requestId=${msg.requestId}")
-    error(s"START TIME::::::::::::${startTime}")
-    //esLog(kQMessage, MoleculeName.GRAPHX, LogsLevel.INFO, "Graph processing has been started",
-    //RStatusCode.getSuccess)
-    val result = for {
-      graphComponent <- validateComponent(msg).right
-      graphXData <- processGraph(df, graphComponent, msg).right
-    } yield {
-      //esLog(kQMessage, MoleculeName.GRAPHX, LogsLevel.ERROR, s"Graph process has been completed.",
-      //RStatusCode.getSuccess)
-      error(s"APPID:::::${msg.appId}::::::::::::requestId=${msg.requestId}")
-      error(s"END TIME::::::::::::::::${System.currentTimeMillis() - startTime}")
-      graphXData
-    }
-    result match {
-      case Right(status) => Right(status)
-      case Left(err) =>
-        error(err.getMessage, err)
-        Right(false)
-    }
-  }
 
   /**
     *
@@ -99,8 +75,7 @@ object GraphContext extends GraphHelper {
     * @param dataFrame
     * @param graphComponent
     */
-  def processGraph(dataFrame: DataFrame, graphComponent: RGraphComponent,
-                   msg: KQMessage): Either[RException, Boolean] = {
+  def processGraph(dataFrame: DataFrame, graphComponent: RGraphComponent): Either[Exception, Boolean] = {
 
     val levelMap = graphComponent.levels
     val list = List(graphComponent.primaryIndex.getOrElse("primaryId"), graphComponent.vertexAttr) ++
@@ -116,12 +91,11 @@ object GraphContext extends GraphHelper {
     val vertices = getVertices(levelMap, newDF, graphComponent)
     val edges = getEdges(graphComponent, newDF)
     val graph = Graph(vertices, edges)
-    toBasicGraph(newDF, graph, levelMap, msg)
-
+    //toBasicGraph(newDF, graph, levelMap, msg)
     Right(true)
   }
 
-  /**
+  /*/**
     *
     * @param verticesDf
     * @param graphs
@@ -146,7 +120,7 @@ object GraphContext extends GraphHelper {
       status <- ESUtility.saveGraphDataToEs(resultNode, resultLinks, msg).right
     } yield status*/
     Right(true)
-  }
+  }*/
 
   /*def filteredDf(df: DataFrame, resultDf: DataFrame, categories: List[String]): DataFrame = {
     @tailrec
