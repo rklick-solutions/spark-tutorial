@@ -1,18 +1,11 @@
 package com.tutorial.graphX.context
 
-import java.util.{Date, UUID}
-
-import org.apache.spark.graphx.Graph
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.DataFrame
-
-import scala.annotation.tailrec
-import scala.util.Left
+import java.util.UUID
 
 /**
   * Created by ved on 31/3/16.
   */
-trait GraphHelper extends Serializable with RLogger {
+trait GraphHelper extends Serializable {
 
   //val PUBLISH_DATE = "publishDate"
 
@@ -29,7 +22,7 @@ trait GraphHelper extends Serializable with RLogger {
     }
   }
 
-  /**
+  /*/**
     *
     * @param vDf
     * @param col
@@ -43,9 +36,9 @@ trait GraphHelper extends Serializable with RLogger {
         Nodes(label.hashCode.toString, Style(label), timestamp)
     }
   }
+*/
 
-
-  /**
+ /* /**
     *
     * @param nodes
     * @param levelMap
@@ -104,7 +97,7 @@ trait GraphHelper extends Serializable with RLogger {
       val value = graph.srcAttr._3.get(key).getOrElse("")
       Links(randomUUID, graph.dstId.toString, value.hashCode.toString, graph.srcAttr._2)
     }
-  }
+  }*/
 
   /**
     * Get unique id
@@ -115,22 +108,5 @@ trait GraphHelper extends Serializable with RLogger {
     UUID.randomUUID().toString
   }
 
-  /**
-    *
-    * @param kQMessage
-    * @return
-    */
-  def validateComponent(kQMessage: KQMessage): Either[RException, RGraphComponent] = {
-    val data = kQMessage.workflow.analyzer.get(ComponentType.GRAPH.toString)
-    ProcessHelper.getGraphComponent(data) match {
-      case Right(graphComponent) =>
-        esLog(kQMessage, MoleculeName.GRAPHX, LogsLevel.INFO, "Valid graph component to start graph processing",
-          RStatusCode.getSuccess)
-        Right(graphComponent)
-      case Left(err) =>
-        val exp = GraphException(err.getMessage)
-        esLog(kQMessage, MoleculeName.GRAPHX, LogsLevel.ERROR, err.getMessage, exp.statusCode.toString)
-        Left(exp)
-    }
-  }
+
 }
