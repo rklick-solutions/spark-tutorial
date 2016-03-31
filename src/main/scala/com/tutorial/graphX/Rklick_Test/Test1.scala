@@ -33,6 +33,7 @@ object Test1 {
     def getEdges(df1: DataFrame): RDD[Edge[String]] = {
       df1.map {
         case row => Edge(row.getAs[Any]("id").toString.toLong,
+
           row.getAs[Any]("id").toString.toLong, row.getAs[Any]("specialization").toString)
       }
     }
@@ -45,6 +46,7 @@ object Test1 {
       */
     val graph = Graph(vertices, edges)
     graph.vertices.collect.foreach(println)
+
     graph.edges.collect().foreach(println)
 
     /**
@@ -101,6 +103,8 @@ object Test1 {
     graph.edges.filter { case Edge(from, to, property) =>
       property == "delhi" | property == "up" | property == "chennai" | property == "mumbai" | property == "ranchi"
     }.collect.foreach(println)
+
+
 
 
     /**
@@ -160,6 +164,7 @@ object Test1 {
     val f1 = graph.vertices.filter { case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>
       fb.equals("y")
     }
+
 
     f1.collect.foreach {
       case (id, (fid, lid, follow, name, age, location, specialization, marital, twitter, fb, movie)) =>

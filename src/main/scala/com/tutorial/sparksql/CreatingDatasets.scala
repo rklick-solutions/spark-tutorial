@@ -19,6 +19,7 @@ object CreatingDatasets {
       .flatMap(_.split(" "))
       .filter(_ != "")
       .groupBy(_.toLowerCase)
+
       .count()
       .show()
 
@@ -34,9 +35,9 @@ object CreatingDatasets {
       *  Mapping will be done by name.
       */
 
-    val people = sqlContext.read.json("src/main/resources/cars.json").as[Cars]
+    val car = sqlContext.read.json("src/main/resources/cars.json").as[Cars]
     
-    people.show()
+    car.show()
 
 
 

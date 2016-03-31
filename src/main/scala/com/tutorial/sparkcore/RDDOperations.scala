@@ -17,19 +17,21 @@ object RDDOperations {
     /**
       * RDD operation for  Word count .
       */
-    val inputFile = sc.textFile("src/main/resources/test_file.txt") // Load our input data.
-    val count = inputFile.flatMap(line => line.split(" ")) // Split it up into words.
-        .map(word => (word, 1)).reduceByKey(_ + _) // Transform into pairs and count.
+    val inputFile = sc.textFile("src/main/resources/phone_data.csv") // Load our input data.
+    val count1 = inputFile.flatMap(line => line.split(" ")) // Split it up into words.
+        .map(word => (word, 1)).aggregateByKey(0)(_+_,_+_) // Transform into pairs and count.
+    println(" agg11:" + count1.collect().mkString(","))
 
     //Save the word count back out to a text file, causing evaluation.
-    count.saveAsTextFile(s"src/main/resources/${UUID.randomUUID()}")
-    println("OK")
+    //count.saveAsTextFile(s"src/main/resources/${UUID.randomUUID()}")
+    //println("OK")
 
     /**
       * Operations on RDDs.
       * count() returns a count of the elements the RDD.
       */
     val inputRDD = sc.textFile("src/main/resources/test_file.txt")
+
     val dataRDD = inputRDD.filter(line => line.contains("data"))
     println(dataRDD.count())
 
@@ -57,6 +59,17 @@ object RDDOperations {
     val inputNumbers = sc.parallelize(List(1, 2, 3, 4))
     val resultSquare = inputNumbers.map(x => x * x)
     println("Square:" + resultSquare.collect().mkString(","))
+
+    /**
+      * agg
+      */
+
+    //val pairs = sc.parallelize(Array(("a", 3), ("a", 1), ("b", 7), ("a", 5)))
+    val pairs = sc.parallelize(List( ("cat",2), ("cat", 5), ("mouse", 4),("cat", 12), ("dog", 12), ("mouse", 2)))
+    val resAgg = pairs.aggregateByKey(0)(_+_,_+_)
+    println(" agg:" + resAgg.collect().mkString(","))
+
+
 
   }
 }
